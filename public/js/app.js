@@ -2168,6 +2168,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
   data: function data() {
     var _this$$inertia$form;
     return {
+      term: '',
       open: false,
       form: this.$inertia.form((_this$$inertia$form = {
         name: '',
@@ -2186,6 +2187,13 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     openForm: function openForm() {
       var open = this.open;
       open == true ? this.open = false : this.open = true;
+    },
+    search: function search() {
+      this.$inertia.get('/cars', {
+        term: this.term
+      }, {
+        preserveState: true
+      });
     }
   }
 });
@@ -28074,15 +28082,15 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "bg-gray-200" }, [
       _c("tr", [
-        _c("th", { staticClass: "px-20" }, [_vm._v("Name")]),
+        _c("th", { staticClass: "px-20" }, [_vm._v("Nome")]),
         _vm._v(" "),
-        _c("th", { staticClass: "px-20" }, [_vm._v("Model")]),
+        _c("th", { staticClass: "px-20" }, [_vm._v("Modelo")]),
         _vm._v(" "),
-        _c("th", { staticClass: "px-20" }, [_vm._v("Year")]),
+        _c("th", { staticClass: "px-20" }, [_vm._v("Ano")]),
         _vm._v(" "),
-        _c("th", { staticClass: "px-20" }, [_vm._v("Color")]),
+        _c("th", { staticClass: "px-20" }, [_vm._v("Cor")]),
         _vm._v(" "),
-        _c("th", { staticClass: "px-20" }, [_vm._v("Actions")]),
+        _c("th", { staticClass: "px-20" }, [_vm._v("Ações")]),
       ]),
     ])
   },
@@ -28109,131 +28117,137 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "flex justify-center" }, [
-    _c("div", [
-      _c(
-        "form",
-        {
-          staticClass: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4",
-          on: {
-            submit: function ($event) {
-              $event.preventDefault()
-              return _vm.updateCar()
-            },
-          },
-        },
-        [
-          _c("div", [
-            _c("h1", { staticClass: "text-xl font-bold mb-5" }, [
-              _vm._v("Edit Car"),
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.name,
-                  expression: "form.name",
-                },
-              ],
-              staticClass:
-                "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
-              attrs: { type: "text", name: "name", placeholder: "Name" },
-              domProps: { value: _vm.form.name },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "name", $event.target.value)
-                },
-              },
-            }),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.model,
-                  expression: "form.model",
-                },
-              ],
-              staticClass:
-                "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
-              attrs: { type: "text", name: "model", placeholder: "Model" },
-              domProps: { value: _vm.form.model },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "model", $event.target.value)
-                },
-              },
-            }),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.year,
-                  expression: "form.year",
-                },
-              ],
-              staticClass:
-                "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
-              attrs: { type: "text", name: "year", placeholder: "Year" },
-              domProps: { value: _vm.form.year },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "year", $event.target.value)
-                },
-              },
-            }),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.color,
-                  expression: "form.color",
-                },
-              ],
-              staticClass:
-                "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
-              attrs: { type: "text", name: "color", placeholder: "Color" },
-              domProps: { value: _vm.form.color },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "color", $event.target.value)
-                },
-              },
-            }),
-          ]),
-          _vm._v(" "),
+  return _c(
+    "body",
+    { staticClass: "h-screen bg-gradient-to-r from-cyan-500 to-blue-500" },
+    [
+      _c("div", { staticClass: "flex justify-center" }, [
+        _c("div", [
           _c(
-            "button",
+            "form",
             {
-              staticClass:
-                "py-1 px-3 bg-sky-500 hover:bg-sky-700 rounded font-bold text-white",
-              attrs: { type: "submit" },
+              staticClass: "m-5 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4",
+              on: {
+                submit: function ($event) {
+                  $event.preventDefault()
+                  return _vm.updateCar()
+                },
+              },
             },
-            [_vm._v("Submit")]
+            [
+              _c("div", [
+                _c("h1", { staticClass: "text-xl font-bold mb-5" }, [
+                  _vm._v("Edit Car"),
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.name,
+                      expression: "form.name",
+                    },
+                  ],
+                  staticClass:
+                    "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+                  attrs: { type: "text", name: "name", placeholder: "Name" },
+                  domProps: { value: _vm.form.name },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "name", $event.target.value)
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.model,
+                      expression: "form.model",
+                    },
+                  ],
+                  staticClass:
+                    "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+                  attrs: { type: "text", name: "model", placeholder: "Model" },
+                  domProps: { value: _vm.form.model },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "model", $event.target.value)
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.year,
+                      expression: "form.year",
+                    },
+                  ],
+                  staticClass:
+                    "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+                  attrs: { type: "text", name: "year", placeholder: "Year" },
+                  domProps: { value: _vm.form.year },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "year", $event.target.value)
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.color,
+                      expression: "form.color",
+                    },
+                  ],
+                  staticClass:
+                    "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+                  attrs: { type: "text", name: "color", placeholder: "Color" },
+                  domProps: { value: _vm.form.color },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "color", $event.target.value)
+                    },
+                  },
+                }),
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "py-1 px-3 bg-sky-500 hover:bg-sky-700 rounded font-bold text-white",
+                  attrs: { type: "submit" },
+                },
+                [_vm._v("Submit")]
+              ),
+            ]
           ),
-        ]
-      ),
-    ]),
-  ])
+        ]),
+      ]),
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -28258,183 +28272,214 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "flex justify-center" }, [
-    _c(
-      "div",
-      [
-        _c(
-          "button",
-          {
-            staticClass:
-              "py-1 px-3 bg-sky-500 hover:bg-sky-700 rounded font-bold text-white",
-            on: {
-              click: function ($event) {
-                return _vm.openForm()
-              },
-            },
-          },
-          [_vm._v("Add\n            Car")]
-        ),
-        _vm._v(" "),
-        _vm.open == true
-          ? _c("div", [
-              _c(
-                "form",
-                {
-                  staticClass: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4",
-                  on: {
-                    submit: function ($event) {
-                      $event.preventDefault()
-                      _vm.form.post(
-                        "/cars/store",
-                        {
-                          onSuccess: function () {
-                            return _vm.form.reset()
-                          },
-                        },
-                        {
-                          onError: function () {
-                            return _vm.alert("Error")
-                          },
-                        }
-                      )
-                    },
+  return _c(
+    "body",
+    { staticClass: "h-screen bg-gradient-to-r from-cyan-500 to-blue-500" },
+    [
+      _c("div", { staticClass: "flex justify-center items-center" }, [
+        _c("div", [
+          _c("div", { staticClass: "flex justify-center items-center" }, [
+            _c(
+              "button",
+              {
+                staticClass:
+                  "m-5 px-1 py-1 bg-white hover:bg-white-700 rounded font-bold",
+                on: {
+                  click: function ($event) {
+                    return _vm.openForm()
                   },
                 },
-                [
-                  _c("div", [
-                    _c("h1", { staticClass: "text-xl font-bold mb-5" }, [
-                      _vm._v("Add Car"),
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.name,
-                          expression: "form.name",
-                        },
-                      ],
-                      staticClass:
-                        "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
-                      attrs: {
-                        type: "text",
-                        name: "name",
-                        placeholder: "Name",
-                      },
-                      domProps: { value: _vm.form.name },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.form, "name", $event.target.value)
-                        },
-                      },
-                    }),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.model,
-                          expression: "form.model",
-                        },
-                      ],
-                      staticClass:
-                        "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
-                      attrs: {
-                        type: "text",
-                        name: "model",
-                        placeholder: "Model",
-                      },
-                      domProps: { value: _vm.form.model },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.form, "model", $event.target.value)
-                        },
-                      },
-                    }),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.year,
-                          expression: "form.year",
-                        },
-                      ],
-                      staticClass:
-                        "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
-                      attrs: {
-                        type: "text",
-                        name: "year",
-                        placeholder: "Year",
-                      },
-                      domProps: { value: _vm.form.year },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.form, "year", $event.target.value)
-                        },
-                      },
-                    }),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.color,
-                          expression: "form.color",
-                        },
-                      ],
-                      staticClass:
-                        "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
-                      attrs: {
-                        type: "text",
-                        name: "color",
-                        placeholder: "Color",
-                      },
-                      domProps: { value: _vm.form.color },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.form, "color", $event.target.value)
-                        },
-                      },
-                    }),
-                  ]),
-                  _vm._v(" "),
+              },
+              [_vm._v("Adicionar Carro")]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.term,
+                  expression: "term",
+                },
+              ],
+              staticClass:
+                "m-5 px-1 py-1 bg-white hover:bg-white-700 rounded font-bold",
+              attrs: { placeholder: "Pesquisar" },
+              domProps: { value: _vm.term },
+              on: {
+                keyup: _vm.search,
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.term = $event.target.value
+                },
+              },
+            }),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex flex-row" }, [
+            _vm.open == true
+              ? _c("div", [
                   _c(
-                    "button",
+                    "form",
                     {
                       staticClass:
-                        "py-1 px-3 bg-sky-500 hover:bg-sky-700 rounded font-bold text-white",
-                      attrs: { type: "submit" },
+                        "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-52 mr-5",
+                      on: {
+                        submit: function ($event) {
+                          $event.preventDefault()
+                          _vm.form.post(
+                            "/cars/store",
+                            {
+                              onSuccess: function () {
+                                return _vm.form.reset()
+                              },
+                            },
+                            {
+                              onError: function () {
+                                return _vm.alert("Error")
+                              },
+                            }
+                          )
+                        },
+                      },
                     },
-                    [_vm._v("Submit")]
+                    [
+                      _c("div", [
+                        _c("h1", { staticClass: "text-xl font-bold mb-5" }, [
+                          _vm._v("Adicionar Carro"),
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.name,
+                              expression: "form.name",
+                            },
+                          ],
+                          staticClass:
+                            "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+                          attrs: {
+                            type: "text",
+                            name: "name",
+                            placeholder: "Nome",
+                          },
+                          domProps: { value: _vm.form.name },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.form, "name", $event.target.value)
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.model,
+                              expression: "form.model",
+                            },
+                          ],
+                          staticClass:
+                            "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+                          attrs: {
+                            type: "text",
+                            name: "model",
+                            placeholder: "Modelo",
+                          },
+                          domProps: { value: _vm.form.model },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.form, "model", $event.target.value)
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.year,
+                              expression: "form.year",
+                            },
+                          ],
+                          staticClass:
+                            "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+                          attrs: {
+                            type: "text",
+                            name: "year",
+                            placeholder: "Ano",
+                          },
+                          domProps: { value: _vm.form.year },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.form, "year", $event.target.value)
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.color,
+                              expression: "form.color",
+                            },
+                          ],
+                          staticClass:
+                            "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+                          attrs: {
+                            type: "text",
+                            name: "color",
+                            placeholder: "Cor",
+                          },
+                          domProps: { value: _vm.form.color },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.form, "color", $event.target.value)
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "py-1 px-3 bg-sky-500 hover:bg-sky-700 rounded font-bold text-white",
+                          attrs: { type: "submit" },
+                        },
+                        [_vm._v("Enviar")]
+                      ),
+                    ]
                   ),
-                ]
-              ),
-            ])
-          : _c("div"),
-        _vm._v(" "),
-        _c("CarTable", { attrs: { cars: _vm.cars } }),
-      ],
-      1
-    ),
-  ])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("div", [_c("CarTable", { attrs: { cars: _vm.cars } })], 1),
+          ]),
+        ]),
+      ]),
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

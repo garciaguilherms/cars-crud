@@ -12,17 +12,15 @@ class CarController extends Controller
 {
     public function index(Request $request)
     {
-        return Inertia::render('Index', [
-            'cars' => Car::latest()->get(),
-        ]);
-    }
+        $term = $request->get('term');
+        $cars = Car::where('name', 'like', '%' . $term . '%')
+            ->orWhere('model', 'like', '%' . $term . '%')
+            ->orWhere('year', 'like', '%' . $term . '%')
+            ->orWhere('color', 'like', '%' . $term . '%')
+            ->get();
 
-    public function search(Request $request)
-    {
-        $search = $request->get('search');
-        $cars = Car::where('name', 'like', '%' . $search . '%')->get();
         return Inertia::render('Index', [
-            'cars' => $cars,
+            'cars' => $cars
         ]);
     }
 

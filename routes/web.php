@@ -9,5 +9,4 @@ Route::put('/cars', [CarController::class, 'index']);
 Route::post('/cars/store', [CarController::class, 'store']);
 Route::put('/cars/{car}', [CarController::class, 'update']);
 Route::get('/cars/{car}', [CarController::class, 'edit']);
-Route::get('/cars/search', [CarController::class, 'search']);
 Route::delete('/cars/{car}', [CarController::class, 'destroy']);

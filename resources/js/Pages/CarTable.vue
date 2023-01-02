@@ -22,11 +22,11 @@ export default {
         <table class="table-auto">
             <thead class="bg-gray-200">
                 <tr>
-                    <th class="px-20">Name</th>
-                    <th class="px-20">Model</th>
-                    <th class="px-20">Year</th>
-                    <th class="px-20">Color</th>
-                    <th class="px-20">Actions</th>
+                    <th class="px-20">Nome</th>
+                    <th class="px-20">Modelo</th>
+                    <th class="px-20">Ano</th>
+                    <th class="px-20">Cor</th>
+                    <th class="px-20">Ações</th>
                 </tr>
             </thead>
             <tbody class="divide-y">
