@@ -14,5 +14,6 @@ Route::put('/cars/{car}', [CarController::class, 'update']);
 Route::get('/cars/{car}', [CarController::class, 'edit']);
 Route::delete('/cars/{car}', [CarController::class, 'destroy']);
 
-Route::get('/login', [UserController::class, 'index']);
-Route::get('/register', [UserController::class, 'register']);
+Route::get('/login', [UserController::class, 'loginPage']);
+Route::get('/register', [UserController::class, 'registerPage']);
+Route::post('/register/store', [UserController::class, 'store']);

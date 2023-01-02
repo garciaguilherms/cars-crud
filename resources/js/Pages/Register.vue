@@ -1,8 +1,26 @@
 <script>
 export default {
+    data() {
+        return {
+            registerForm: this.$inertia.form({
+                name: '',
+                email: '',
+                password: '',
+            })
+        }
+    },
+
     methods: {
         goToLogin() {
             this.$inertia.get('/login');
+        },
+
+        registerUser() {
+            this.registerForm.post('/register/store', this.registerForm, {
+                onSuccess: () => {
+                    this.$inertia.get('/login');
+                }
+            });
         }
     }
 }
@@ -13,14 +31,14 @@ export default {
     <body class="h-screen bg-gradient-to-r from-cyan-500 to-blue-500 items-center flex justify-center content-center">
         <div>
             <div>
-                <form class="m-5 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <form @submit.prevent="registerUser()" class="m-5 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                     <div>
                         <h1 class="text-xl font-bold mb-5">Cadastro</h1>
-                        <input type="text" name="name" placeholder="Nome"
+                        <input type="text" v-model="registerForm.name" name="name" placeholder="Nome"
                             class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        <input type="text" name="name" placeholder="E-mail"
+                        <input type="text" v-model="registerForm.email" name="email" placeholder="E-mail"
                             class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        <input type="text" name="model" placeholder="Senha"
+                        <input type="text" v-model="registerForm.password" name="password" placeholder="Senha"
                             class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     </div>
                     <button type="submit"
@@ -28,6 +46,7 @@ export default {
                     <button @click.prevent="goToLogin()" class="py-1 px-3 rounded font-bold text-gray-500">Já
                         é cadastrado?</button>
                 </form>
+
             </div>
         </div>
     </body>
