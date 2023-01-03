@@ -1,9 +1,9 @@
 <script>
-
 export default {
 
     props: {
         cars: Array,
+        message: String,
     },
     methods: {
         deleteCar(car) {

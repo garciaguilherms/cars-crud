@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\UserController;
+use App\Models\User;
 use Error;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+
 
 class CarController extends Controller
 {
@@ -19,8 +22,14 @@ class CarController extends Controller
             ->orWhere('color', 'like', '%' . $term . '%')
             ->get();
 
+
+        $user = $request->user()
+            ? $request->user()->only('id', 'name', 'email')
+            : null;
+
         return Inertia::render('Index', [
-            'cars' => $cars
+            'cars' => $cars,
+            'user' => $user,
         ]);
     }
 
@@ -32,7 +41,7 @@ class CarController extends Controller
         $checkerColor = Car::where('color', $request->color)->exists();
 
         if ($checkerName && $checkerModel && $checkerYear && $checkerColor) {
-            return redirect('/cars')->with('error', 'Car already exists!');
+            return redirect('/cars');
         } else {
             $car = new Car();
             $car->name = $request->name;
@@ -40,7 +49,7 @@ class CarController extends Controller
             $car->year = $request->year;
             $car->color = $request->color;
             $car->save();
-            return redirect('/cars')->with('success', 'Car added successfully!');
+            return redirect('/cars');
         }
     }
 
@@ -66,6 +75,6 @@ class CarController extends Controller
     public function destroy(Car $car)
     {
         $car->delete();
-        return redirect('/cars');
+        return redirect()->back();
     }
 }

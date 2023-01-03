@@ -5,7 +5,7 @@ use App\Http\Controllers\CarController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
 
-Route::get('/', [CarController::class, 'index']);
+Route::get('/', [UserController::class, 'loginPage']);
 Route::get('/cars', [CarController::class, 'index']);
 Route::put('/cars', [CarController::class, 'index']);
 
@@ -14,6 +14,11 @@ Route::put('/cars/{car}', [CarController::class, 'update']);
 Route::get('/cars/{car}', [CarController::class, 'edit']);
 Route::delete('/cars/{car}', [CarController::class, 'destroy']);
 
+
+//Login
 Route::get('/login', [UserController::class, 'loginPage']);
+Route::post('/login/store', [UserController::class, 'login']);
+
+//Registro
 Route::get('/register', [UserController::class, 'registerPage']);
 Route::post('/register/store', [UserController::class, 'store']);

@@ -2091,7 +2091,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
-    cars: Array
+    cars: Array,
+    message: String
   },
   methods: {
     deleteCar: function deleteCar(car) {
@@ -2168,6 +2169,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
   data: function data() {
     var _this$$inertia$form;
     return {
+      show: true,
       term: '',
       open: false,
       form: this.$inertia.form((_this$$inertia$form = {
@@ -2178,7 +2180,8 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     };
   },
   props: {
-    cars: Array
+    cars: Array,
+    user: Array
   },
   components: {
     CarTable: _CarTable_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -2216,6 +2219,14 @@ __webpack_require__.r(__webpack_exports__);
     goToRegister: function goToRegister() {
       this.$inertia.get('/register');
     }
+  },
+  data: function data() {
+    return {
+      loginForm: this.$inertia.form({
+        email: '',
+        password: ''
+      })
+    };
   }
 });
 
@@ -28480,6 +28491,8 @@ var render = function () {
     { staticClass: "h-screen bg-gradient-to-r from-cyan-500 to-blue-500" },
     [
       _c("div", { staticClass: "flex justify-center items-center" }, [
+        _c("div"),
+        _vm._v(" "),
         _c("div", [
           _c("div", { staticClass: "flex justify-center items-center" }, [
             _c(
@@ -28519,6 +28532,19 @@ var render = function () {
                 },
               },
             }),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "m-5 px-1 py-1 bg-white hover:bg-white-700 rounded font-bold",
+              },
+              [
+                _vm._v(
+                  "Bem-vindo: " + _vm._s(_vm.user.name) + "\n                "
+                ),
+              ]
+            ),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "flex flex-row" }, [
@@ -28532,19 +28558,11 @@ var render = function () {
                       on: {
                         submit: function ($event) {
                           $event.preventDefault()
-                          _vm.form.post(
-                            "/cars/store",
-                            {
-                              onSuccess: function () {
-                                return _vm.form.reset()
-                              },
+                          _vm.form.post("/cars/store", {
+                            onSuccess: function () {
+                              return _vm.form.reset()
                             },
-                            {
-                              onError: function () {
-                                return _vm.alert("Error")
-                              },
-                            }
-                          )
+                          })
                         },
                       },
                     },
@@ -28720,9 +28738,73 @@ var render = function () {
             "form",
             {
               staticClass: "m-5 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4",
+              on: {
+                submit: function ($event) {
+                  $event.preventDefault()
+                  _vm.loginForm.post("/login/store", {
+                    onSuccess: function () {
+                      return _vm.loginForm.reset()
+                    },
+                  })
+                },
+              },
             },
             [
-              _vm._m(0),
+              _c("div", [
+                _c("h1", { staticClass: "text-xl font-bold mb-5" }, [
+                  _vm._v("Login"),
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.loginForm.email,
+                      expression: "loginForm.email",
+                    },
+                  ],
+                  staticClass:
+                    "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+                  attrs: { type: "text", name: "email", placeholder: "E-mail" },
+                  domProps: { value: _vm.loginForm.email },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.loginForm, "email", $event.target.value)
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.loginForm.password,
+                      expression: "loginForm.password",
+                    },
+                  ],
+                  staticClass:
+                    "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+                  attrs: {
+                    type: "text",
+                    name: "password",
+                    placeholder: "Senha",
+                  },
+                  domProps: { value: _vm.loginForm.password },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.loginForm, "password", $event.target.value)
+                    },
+                  },
+                }),
+              ]),
               _vm._v(" "),
               _c(
                 "button",
@@ -28754,28 +28836,7 @@ var render = function () {
     ]
   )
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("h1", { staticClass: "text-xl font-bold mb-5" }, [_vm._v("Login")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass:
-          "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
-        attrs: { type: "text", name: "name", placeholder: "E-mail" },
-      }),
-      _vm._v(" "),
-      _c("input", {
-        staticClass:
-          "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
-        attrs: { type: "text", name: "model", placeholder: "Senha" },
-      }),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

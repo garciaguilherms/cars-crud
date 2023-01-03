@@ -3,6 +3,14 @@ export default {
     methods: {
         goToRegister() {
             this.$inertia.get('/register');
+        },
+    },
+    data() {
+        return {
+            loginForm: this.$inertia.form({
+                email: '',
+                password: '',
+            }),
         }
     }
 }
@@ -13,12 +21,13 @@ export default {
     <body class="h-screen bg-gradient-to-r from-cyan-500 to-blue-500 items-center flex justify-center content-center">
         <div>
             <div>
-                <form class="m-5 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <form @submit.prevent="loginForm.post(('/login/store'), { onSuccess: () => loginForm.reset() })"
+                    class="m-5 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                     <div>
                         <h1 class="text-xl font-bold mb-5">Login</h1>
-                        <input type="text" name="name" placeholder="E-mail"
+                        <input v-model="loginForm.email" type="text" name="email" placeholder="E-mail"
                             class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        <input type="text" name="model" placeholder="Senha"
+                        <input v-model="loginForm.password" type="text" name="password" placeholder="Senha"
                             class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     </div>
                     <button type="submit"
