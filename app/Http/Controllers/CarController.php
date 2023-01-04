@@ -15,12 +15,15 @@ class CarController extends Controller
     public function index(Request $request)
     {
         $term = $request->get('term');
-        $cars = Car::where('name', 'like', '%' . $term . '%')
+        $cars = Car::with('user:id,name')
+            ->where('name', 'like', '%' . $term . '%')
             ->orWhere('model', 'like', '%' . $term . '%')
             ->orWhere('year', 'like', '%' . $term . '%')
             ->orWhere('color', 'like', '%' . $term . '%')
+            ->orWhereHas('user', function ($query) use ($term) {
+                $query->where('name', 'like', '%' . $term . '%');
+            })
             ->get();
-
 
         $user = $request->user()
             ? $request->user()->only('id', 'name', 'email')
@@ -48,7 +51,8 @@ class CarController extends Controller
             $car->model = $request->model;
             $car->year = $request->year;
             $car->color = $request->color;
-            $car->save();
+
+            $request->user()->cars()->save($car);
             return redirect('/cars');
         }
     }
