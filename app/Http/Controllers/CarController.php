@@ -6,7 +6,6 @@ use App\Models\Car;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\UserController;
 use App\Models\User;
-use Error;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -35,12 +34,13 @@ class CarController extends Controller
 
     public function store(Request $request)
     {
-        $checkerName = Car::where('name', $request->name)->exists();
-        $checkerModel = Car::where('model', $request->model)->exists();
-        $checkerYear = Car::where('year', $request->year)->exists();
-        $checkerColor = Car::where('color', $request->color)->exists();
+        $checkIfExistis = Car::where('name', $request->name)->exists()
+            && Car::where('model', $request->model)->exists()
+            && Car::where('year', $request->year)->exists()
+            && Car::where('color', $request->color)->exists();
 
-        if ($checkerName && $checkerModel && $checkerYear && $checkerColor) {
+
+        if ($checkIfExistis) {
             return redirect('/cars');
         } else {
             $car = new Car();

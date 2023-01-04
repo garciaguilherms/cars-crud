@@ -59,13 +59,13 @@ export default {
                             class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-52 mr-5">
                             <div>
                                 <h1 class="text-xl font-bold mb-5">Adicionar Carro</h1>
-                                <input type="text" v-model="form.name" name="name" placeholder="Nome"
+                                <input type="text" autocomplete="off" v-model="form.name" name="name" placeholder="Nome"
                                     class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                                <input type="text" v-model="form.model" name="model" placeholder="Modelo"
+                                <input type="text" autocomplete="off" v-model="form.model" name="model" placeholder="Modelo"
                                     class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                                <input type="text" v-model="form.year" name="year" placeholder="Ano"
+                                <input type="text" autocomplete="off" v-model="form.year" name="year" placeholder="Ano"
                                     class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                                <input type="text" v-model="form.color" name="color" placeholder="Cor"
+                                <input type="text" autocomplete="off" v-model="form.color" name="color" placeholder="Cor"
                                     class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
 
                             </div>

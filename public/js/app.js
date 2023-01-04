@@ -28585,6 +28585,7 @@ var render = function () {
                             "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
                           attrs: {
                             type: "text",
+                            autocomplete: "off",
                             name: "name",
                             placeholder: "Nome",
                           },
@@ -28612,6 +28613,7 @@ var render = function () {
                             "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
                           attrs: {
                             type: "text",
+                            autocomplete: "off",
                             name: "model",
                             placeholder: "Modelo",
                           },
@@ -28639,6 +28641,7 @@ var render = function () {
                             "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
                           attrs: {
                             type: "text",
+                            autocomplete: "off",
                             name: "year",
                             placeholder: "Ano",
                           },
@@ -28666,6 +28669,7 @@ var render = function () {
                             "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
                           attrs: {
                             type: "text",
+                            autocomplete: "off",
                             name: "color",
                             placeholder: "Cor",
                           },
