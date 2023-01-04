@@ -28333,14 +28333,18 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "body",
-    { staticClass: "h-screen bg-gradient-to-r from-cyan-500 to-blue-500" },
+    {
+      staticClass:
+        "h-screen bg-gradient-to-r from-cyan-500 to-blue-500 items-center flex justify-center content-center",
+    },
     [
       _c("div", { staticClass: "flex justify-center" }, [
         _c("div", [
           _c(
             "form",
             {
-              staticClass: "m-5 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4",
+              staticClass:
+                "m-5 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-80",
               on: {
                 submit: function ($event) {
                   $event.preventDefault()
@@ -28351,7 +28355,7 @@ var render = function () {
             [
               _c("div", [
                 _c("h1", { staticClass: "text-xl font-bold mb-5" }, [
-                  _vm._v("Edit Car"),
+                  _vm._v("Editar Carro"),
                 ]),
                 _vm._v(" "),
                 _c("input", {
@@ -28365,7 +28369,7 @@ var render = function () {
                   ],
                   staticClass:
                     "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
-                  attrs: { type: "text", name: "name", placeholder: "Name" },
+                  attrs: { type: "text", name: "name", placeholder: "Nome" },
                   domProps: { value: _vm.form.name },
                   on: {
                     input: function ($event) {
@@ -28388,7 +28392,7 @@ var render = function () {
                   ],
                   staticClass:
                     "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
-                  attrs: { type: "text", name: "model", placeholder: "Model" },
+                  attrs: { type: "text", name: "model", placeholder: "Modelo" },
                   domProps: { value: _vm.form.model },
                   on: {
                     input: function ($event) {
@@ -28411,7 +28415,7 @@ var render = function () {
                   ],
                   staticClass:
                     "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
-                  attrs: { type: "text", name: "year", placeholder: "Year" },
+                  attrs: { type: "text", name: "year", placeholder: "Ano" },
                   domProps: { value: _vm.form.year },
                   on: {
                     input: function ($event) {
@@ -28434,7 +28438,7 @@ var render = function () {
                   ],
                   staticClass:
                     "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
-                  attrs: { type: "text", name: "color", placeholder: "Color" },
+                  attrs: { type: "text", name: "color", placeholder: "Cor" },
                   domProps: { value: _vm.form.color },
                   on: {
                     input: function ($event) {
@@ -28454,7 +28458,7 @@ var render = function () {
                     "py-1 px-3 bg-sky-500 hover:bg-sky-700 rounded font-bold text-white",
                   attrs: { type: "submit" },
                 },
-                [_vm._v("Submit")]
+                [_vm._v("Atualizar")]
               ),
             ]
           ),
@@ -28533,18 +28537,11 @@ var render = function () {
               },
             }),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "m-5 px-1 py-1 bg-white hover:bg-white-700 rounded font-bold",
-              },
-              [
-                _vm._v(
-                  "Bem-vindo: " + _vm._s(_vm.user.name) + "\n                "
-                ),
-              ]
-            ),
+            _c("div", { staticClass: "m-5 px-1 py-1 text-white font-bold" }, [
+              _vm._v(
+                "Bem-vindo " + _vm._s(_vm.user.name) + "\n                "
+              ),
+            ]),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "flex flex-row" }, [

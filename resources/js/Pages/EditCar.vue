@@ -24,25 +24,25 @@ export default {
 
 <template>
 
-    <body class="h-screen bg-gradient-to-r from-cyan-500 to-blue-500">
+    <body class="h-screen bg-gradient-to-r from-cyan-500 to-blue-500 items-center flex justify-center content-center">
         <div class=" flex justify-center">
             <div>
-                <form @submit.prevent="updateCar()" class="m-5 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <form @submit.prevent="updateCar()" class="m-5 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-80">
 
                     <div>
-                        <h1 class="text-xl font-bold mb-5">Edit Car</h1>
-                        <input type="text" v-model="form.name" name="name" placeholder="Name"
+                        <h1 class="text-xl font-bold mb-5">Editar Carro</h1>
+                        <input type="text" v-model="form.name" name="name" placeholder="Nome"
                             class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        <input type="text" v-model="form.model" name="model" placeholder="Model"
+                        <input type="text" v-model="form.model" name="model" placeholder="Modelo"
                             class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        <input type="text" v-model="form.year" name="year" placeholder="Year"
+                        <input type="text" v-model="form.year" name="year" placeholder="Ano"
                             class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        <input type="text" v-model="form.color" name="color" placeholder="Color"
+                        <input type="text" v-model="form.color" name="color" placeholder="Cor"
                             class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
 
                     </div>
                     <button type="submit"
-                        class="py-1 px-3 bg-sky-500 hover:bg-sky-700 rounded font-bold text-white">Submit</button>
+                        class="py-1 px-3 bg-sky-500 hover:bg-sky-700 rounded font-bold text-white">Atualizar</button>
                 </form>
             </div>
         </div>

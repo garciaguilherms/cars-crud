@@ -49,7 +49,7 @@ export default {
                         class="m-5 px-1 py-1 bg-white hover:bg-white-700 rounded font-bold">Adicionar Carro</button>
                     <input v-model="term" @keyup="search" placeholder="Pesquisar"
                         class="m-5 px-1 py-1 bg-white hover:bg-white-700 rounded font-bold">
-                    <div class="m-5 px-1 py-1 bg-white hover:bg-white-700 rounded font-bold">Bem-vindo: {{ user.name }}
+                    <div class="m-5 px-1 py-1 text-white font-bold">Bem-vindo {{ user.name }}
                     </div>
 
                 </div>
@@ -61,11 +61,13 @@ export default {
                                 <h1 class="text-xl font-bold mb-5">Adicionar Carro</h1>
                                 <input type="text" autocomplete="off" v-model="form.name" name="name" placeholder="Nome"
                                     class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                                <input type="text" autocomplete="off" v-model="form.model" name="model" placeholder="Modelo"
+                                <input type="text" autocomplete="off" v-model="form.model" name="model"
+                                    placeholder="Modelo"
                                     class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                                 <input type="text" autocomplete="off" v-model="form.year" name="year" placeholder="Ano"
                                     class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                                <input type="text" autocomplete="off" v-model="form.color" name="color" placeholder="Cor"
+                                <input type="text" autocomplete="off" v-model="form.color" name="color"
+                                    placeholder="Cor"
                                     class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
 
                             </div>
