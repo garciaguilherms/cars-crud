@@ -18,6 +18,7 @@ Route::delete('/cars/{car}', [CarController::class, 'destroy']);
 //Login
 Route::get('/login', [UserController::class, 'loginPage']);
 Route::post('/login/store', [UserController::class, 'login']);
+Route::get('/logout', [UserController::class, 'logout']);
 
 //Registro
 Route::get('/register', [UserController::class, 'registerPage']);

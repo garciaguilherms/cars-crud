@@ -65,7 +65,7 @@ class CarPolicy
      */
     public function delete(User $user, Car $car)
     {
-        return $car->user()->where('id', $user->id)->exists() && $car->user()->is($user);
+        return $car->user()->is($user);
     }
 
     /**

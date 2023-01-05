@@ -1,5 +1,11 @@
 <script>
 export default {
+    data() {
+        return {
+            user: this.$page.props.user,
+        }
+    },
+
     props: {
         cars: Array,
     },
@@ -43,7 +49,7 @@ export default {
                             <td class="px-20 py-2">{{ car.user.name }}</td>
                             <div class="flex w-full justify-center space-x-3 mt-1">
                                 <td>
-                                    <button
+                                    <button v-if="car.user_id == user.id"
                                         class="border px-1 py-1 bg-sky-500 hover:bg-sky-700 rounded font-bold text-white">
                                         <a :href="`/cars/${car.id}`">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -54,7 +60,7 @@ export default {
                                         </a>
                                     </button>
 
-                                    <button @click="deleteCar(car)" class=" border-0 outline-0 border px-1 py-1 bg-red-500 hover:bg-red-700 rounded
+                                    <button v-if="car.user_id == user.id" @click="deleteCar(car)" class=" border-0 outline-0 border px-1 py-1 bg-red-500 hover:bg-red-700 rounded
                                         font-bold text-white">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
