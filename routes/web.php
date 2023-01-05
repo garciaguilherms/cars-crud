@@ -22,3 +22,5 @@ Route::post('/login/store', [UserController::class, 'login']);
 //Registro
 Route::get('/register', [UserController::class, 'registerPage']);
 Route::post('/register/store', [UserController::class, 'store']);
+
+Route::get('/cars/{car}/history', [CarController::class, 'history']);

@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Car;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\UserController;
+use App\Models\CarHistory;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Inertia\Inertia;
 
 
@@ -80,5 +82,14 @@ class CarController extends Controller
     {
         $car->delete();
         return redirect()->back();
+    }
+
+    public function history(Car $car)
+    {
+        $cars = $car->histories()->get();
+
+        return Inertia::render('History', [
+            'cars' => $cars,
+        ]);
     }
 }
