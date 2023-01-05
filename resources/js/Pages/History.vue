@@ -37,9 +37,9 @@ export default {
             </div>
 
         </div>
-        <div class="bg-white rounded-md shadow-md flex justify-center mx-8">
-            <table class="table-auto">
-                <div>
+        <div class="flex justify-center mx-8">
+            <table class="table-auto divide-y">
+                <div class="bg-white bg-white rounded-md shadow-md divide-y">
                     <thead>
                         <tr>
                             <th class="px-20">Nome</th>

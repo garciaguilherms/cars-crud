@@ -27,10 +27,9 @@ export default {
 
 <template>
     <div>
-
         <body class="w-screen flex justify-center">
             <table class="table-auto divide-y">
-                <div class="bg-white bg-white rounded-md shadow-md">
+                <div class="bg-white bg-white rounded-md shadow-md divide-y">
                     <thead>
                         <tr>
                             <th class="px-20">Nome</th>
