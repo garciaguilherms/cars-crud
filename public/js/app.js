@@ -58159,7 +58159,7 @@ var render = function () {
     "body",
     {
       staticClass:
-        "h-screen bg-gradient-to-r from-cyan-500 to-blue-500 items-center flex justify-center content-center",
+        "h-screen bg-gradient-to-r from-indigo-300 to-purple-400 items-center flex justify-center content-center",
     },
     [
       _c("div", { staticClass: "flex justify-center" }, [
@@ -58279,7 +58279,7 @@ var render = function () {
                 "button",
                 {
                   staticClass:
-                    "py-1 px-3 bg-sky-500 hover:bg-sky-700 rounded font-bold text-white",
+                    "py-1 px-3 bg-indigo-400 hover:bg-indigo-600 rounded font-bold text-white",
                   attrs: { type: "submit" },
                 },
                 [_vm._v("Atualizar")]
@@ -58941,7 +58941,7 @@ var render = function () {
     "body",
     {
       staticClass:
-        "h-screen bg-gradient-to-r from-cyan-500 to-blue-500 items-center flex justify-center content-center",
+        "h-screen bg-gradient-to-r from-indigo-300 to-purple-400 items-center flex justify-center content-center",
     },
     [
       _c("div", [
@@ -59045,7 +59045,7 @@ var render = function () {
                 "button",
                 {
                   staticClass:
-                    "py-1 px-3 bg-sky-500 hover:bg-sky-700 rounded font-bold text-white",
+                    "py-1 px-3 bg-indigo-400 hover:bg-indigo-600 rounded font-bold text-white",
                   attrs: { type: "submit" },
                 },
                 [_vm._v("Cadastrar-se")]

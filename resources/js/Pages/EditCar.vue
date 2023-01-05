@@ -24,7 +24,7 @@ export default {
 
 <template>
 
-    <body class="h-screen bg-gradient-to-r from-cyan-500 to-blue-500 items-center flex justify-center content-center">
+    <body class="h-screen bg-gradient-to-r from-indigo-300 to-purple-400 items-center flex justify-center content-center">
         <div class=" flex justify-center">
             <div>
                 <form @submit.prevent="updateCar()" class="m-5 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-80">
@@ -42,7 +42,7 @@ export default {
 
                     </div>
                     <button type="submit"
-                        class="py-1 px-3 bg-sky-500 hover:bg-sky-700 rounded font-bold text-white">Atualizar</button>
+                        class="py-1 px-3 bg-indigo-400 hover:bg-indigo-600 rounded font-bold text-white">Atualizar</button>
                 </form>
             </div>
         </div>
