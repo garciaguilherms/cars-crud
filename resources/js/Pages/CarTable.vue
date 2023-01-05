@@ -3,6 +3,7 @@ export default {
     props: {
         cars: Array,
     },
+
     methods: {
         deleteCar(car) {
             this.$inertia.post('/cars/' + car.id, {
@@ -13,8 +14,8 @@ export default {
             this.$inertia.get('/cars/' + car.id + '/history');
         },
     },
-
 }
+
 
 </script>
 
@@ -53,8 +54,8 @@ export default {
                                         </a>
                                     </button>
 
-                                    <button @click="deleteCar(car)"
-                                        class="border-0 outline-0 border px-1 py-1 bg-red-500 hover:bg-red-700 rounded font-bold text-white">
+                                    <button @click="deleteCar(car)" class=" border-0 outline-0 border px-1 py-1 bg-red-500 hover:bg-red-700 rounded
+                                        font-bold text-white">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                             <path stroke-linecap="round" stroke-linejoin="round"

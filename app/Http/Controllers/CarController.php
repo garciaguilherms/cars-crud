@@ -39,24 +39,25 @@ class CarController extends Controller
 
     public function store(Request $request)
     {
-        $checkIfExistis = Car::where('name', $request->name)->exists()
-            && Car::where('model', $request->model)->exists()
-            && Car::where('year', $request->year)->exists()
-            && Car::where('color', $request->color)->exists();
+        // $checkIfExistis = Car::where('name', $request->name)->exists()
+        //     && Car::where('model', $request->model)->exists()
+        //     && Car::where('year', $request->year)->exists()
+        //     && Car::where('color', $request->color)->exists();
 
 
-        if ($checkIfExistis) {
-            return redirect('/cars');
-        } else {
-            $car = new Car();
-            $car->name = $request->name;
-            $car->model = $request->model;
-            $car->year = $request->year;
-            $car->color = $request->color;
+        // if ($checkIfExistis) {
+        //     return redirect('/cars');
+        // } else {
 
-            $request->user()->cars()->save($car);
-            return redirect('/cars');
-        }
+        $validated = $request->validate([
+            'name' => 'required',
+            'model' => 'required',
+            'year' => 'required',
+            'color' => 'required',
+        ]);
+
+        $request->user()->cars()->create($validated);
+        return redirect('/cars');
     }
 
 
@@ -80,6 +81,7 @@ class CarController extends Controller
 
     public function destroy(Car $car)
     {
+        $this->authorize('delete', $car);
         $car->delete();
         return redirect()->back();
     }
@@ -89,7 +91,7 @@ class CarController extends Controller
         $cars = $car->histories()->get();
 
         return Inertia::render('History', [
-            'cars' => $cars,
+            'cars' => $cars
         ]);
     }
 }

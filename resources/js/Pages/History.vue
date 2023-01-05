@@ -1,9 +1,17 @@
 <script>
+import moment from "moment";
+moment.locale('pt-br');
+
 export default {
+    data() {
+        return {
+            moment: moment,
+        }
+    },
+
     props: {
         cars: Array,
-
-    }
+    },
 }
 
 </script>
@@ -11,13 +19,20 @@ export default {
 <template>
 
     <body class="h-screen bg-gradient-to-r from-indigo-300 to-purple-400">
-        <div class="flex justify-center items-center">
-            <div class="bg-stone-50 w-full h-20 mb-5 flex justify-center items-center">
+        <div class="flex justify-between items-center">
+            <div class="bg-stone-50 w-full h-20 mb-5 flex justify-between items-center">
+
                 <div>
-                    <div>
-                        <h1 class="font-bold">Histórico de Alterações</h1>
-                    </div>
+                    <button @click.prevent="$inertia.get('/cars')"
+                        class="py-1 px-4 ml-5 mr-5 bg-indigo-400 hover:bg-indigo-600 rounded font-bold text-white">Voltar</button>
                 </div>
+                <div>
+                    <h1 class="font-bold mr-28">Histórico de Alterações</h1>
+                </div>
+                <div>
+
+                </div>
+
 
             </div>
 
@@ -41,7 +56,7 @@ export default {
                             <td class="px-20 py-2">{{ car.model }}</td>
                             <td class="px-20 py-2">{{ car.year }}</td>
                             <td class="px-20 py-2">{{ car.color }}</td>
-                            <td class="px-20 py-2">{{ car.created_at }}</td>
+                            <td class="px-20 py-2">{{ moment(car.created_at).fromNow() }}</td>
                         </tr>
                     </tbody>
                 </div>

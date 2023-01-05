@@ -18,7 +18,8 @@ export default {
 
 <template>
 
-    <body class="h-screen bg-gradient-to-r from-cyan-500 to-blue-500 items-center flex justify-center content-center">
+    <body
+        class="h-screen bg-gradient-to-r from-indigo-300 to-purple-400 items-center flex justify-center content-center">
         <div>
             <div>
                 <form @submit.prevent="loginForm.post(('/login/store'), { onSuccess: () => loginForm.reset() })"
@@ -31,7 +32,7 @@ export default {
                             class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     </div>
                     <button type="submit"
-                        class="py-1 px-3 bg-sky-500 hover:bg-sky-700 rounded font-bold text-white">Entrar</button>
+                        class="py-1 px-3 bg-indigo-400 hover:bg-indigo-600 rounded font-bold text-white">Entrar</button>
                     <button @click.prevent="goToRegister()" class="py-1 px-3 rounded font-bold text-gray-500">Não
                         é cadastrado?</button>
                 </form>
