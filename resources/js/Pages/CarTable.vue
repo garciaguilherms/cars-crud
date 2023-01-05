@@ -27,9 +27,10 @@ export default {
 
 <template>
     <div>
-        <div class="bg-white rounded-md shadow-md flex justify-center mx-8">
-            <table class="table-auto">
-                <div>
+
+        <body class="w-screen flex justify-center">
+            <table class="table-auto divide-y">
+                <div class="bg-white bg-white rounded-md shadow-md">
                     <thead>
                         <tr>
                             <th class="px-20">Nome</th>
@@ -40,7 +41,7 @@ export default {
                             <th class="px-20">Ações</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="divide-y">
                         <tr class="text-base" v-for="car in cars" :key="car.id">
                             <td class="px-20 py-2">{{ car.name }}</td>
                             <td class="px-20 py-2">{{ car.model }}</td>
@@ -83,6 +84,6 @@ export default {
                     </tbody>
                 </div>
             </table>
-        </div>
+        </body>
     </div>
 </template>
