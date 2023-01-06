@@ -94,4 +94,12 @@ class CarController extends Controller
             'cars' => $cars
         ]);
     }
+
+    public function more(Car $car)
+    {
+
+        return Inertia::render('More', [
+            'car' => $car
+        ]);
+    }
 }

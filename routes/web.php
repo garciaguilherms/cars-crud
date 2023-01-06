@@ -24,4 +24,8 @@ Route::get('/logout', [UserController::class, 'logout']);
 Route::get('/register', [UserController::class, 'registerPage']);
 Route::post('/register/store', [UserController::class, 'store']);
 
+//Histórico
 Route::get('/cars/{car}/history', [CarController::class, 'history']);
+
+//Mais informações
+Route::get('/cars/{car}/more', [CarController::class, 'more']);
