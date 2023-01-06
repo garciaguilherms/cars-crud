@@ -14,6 +14,7 @@ class Car extends Model
         'model',
         'year',
         'color',
+        'description',
         'user_id'
     ];
 

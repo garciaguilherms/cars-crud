@@ -61,24 +61,7 @@ export default {
                             </thead>
                             <tbody>
                                 <tr class="text-base">
-                                    <td class="px-20 py-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                                        laoreet, enim vitae elementum porta, enim tortor ultrices magna, laoreet
-                                        sollicitudin massa lorem sed nulla. Aenean placerat eros eget libero volutpat
-                                        sagittis. Duis metus lacus, pulvinar eu justo vel, vehicula ultrices nisi.
-                                        Vivamus lacinia ultricies dui non dignissim. Nunc ut turpis aliquet, tempus eros
-                                        quis, varius metus. Morbi ac ornare odio. Duis laoreet tempus sem at dignissim.
-                                        Quisque eu felis ante. Sed pretium nibh id dapibus placerat. Interdum et
-                                        malesuada fames ac ante ipsum primis in faucibus.
-
-                                        Donec euismod risus sit amet lorem lobortis iaculis. Curabitur orci sem,
-                                        condimentum vitae mi eget, condimentum efficitur purus. Integer placerat
-                                        pellentesque urna. Curabitur et lacus est. Nulla ullamcorper sodales diam vitae
-                                        tristique. Nunc elementum elit vel nunc tincidunt, vel lacinia purus consequat.
-                                        Duis fringilla, augue condimentum aliquam tincidunt, ligula diam tristique
-                                        lacus, non ultrices tortor ex vel neque. Suspendisse tempor convallis interdum.
-                                        Nulla tempus elit et leo sagittis blandit. Nulla congue dignissim eros, id
-                                        lobortis ipsum pellentesque vel. Duis non lacus a ipsum laoreet sodales.
-                                        Phasellus rutrum volutpat facilisis.</td>
+                                    <td class="px-20 py-2">{{ car.description }}</td>
                                 </tr>
                             </tbody>
                         </div>

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('model');
             $table->string('year');
             $table->string('color');
+            $table->text('description');
             $table->timestamps();
         });
     }

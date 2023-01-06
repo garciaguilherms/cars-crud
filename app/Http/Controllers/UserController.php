@@ -13,9 +13,7 @@ class UserController extends Controller
 {
     public function loginPage()
     {
-        return Inertia::render('Login', [
-            'users' => User::all()
-        ]);
+        return Inertia::render('Login', []);
     }
 
     public function login(Request $request)
@@ -28,7 +26,7 @@ class UserController extends Controller
         if (auth()->attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended(RouteServiceProvider::HOME);
+            return redirect()->intended('/cars');
         }
     }
 
@@ -37,8 +35,6 @@ class UserController extends Controller
         auth()->logout();
 
         $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
 
         return redirect('/');
     }
@@ -56,12 +52,12 @@ class UserController extends Controller
             'password' => 'required|min:6',
         ]);
 
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->save();
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
 
-        return redirect('/login')->with('success', 'User created successfully.');
+        return redirect('/login');
     }
 }

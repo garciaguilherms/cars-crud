@@ -13,6 +13,7 @@ export default {
                 year: '',
                 model: '',
                 color: '',
+                description: '',
             }),
         }
     },
@@ -109,6 +110,9 @@ export default {
                                 class="bg-zinc-100 mb-5 shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
 
                             <input type="text" autocomplete="off" v-model="form.color" name="color" placeholder="Cor"
+                                class="bg-zinc-100 mb-5 shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <input type="text" autocomplete="off" v-model="form.description" name="description"
+                            placeholder="Descrição"
                                 class="bg-zinc-100 mb-5 shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
 
                             <div>

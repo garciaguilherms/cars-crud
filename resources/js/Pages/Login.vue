@@ -28,7 +28,7 @@ export default {
                         <h1 class="text-xl font-bold mb-5">Login</h1>
                         <input v-model="loginForm.email" type="text" name="email" placeholder="E-mail"
                             class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        <input v-model="loginForm.password" type="text" name="password" placeholder="Senha"
+                        <input v-model="loginForm.password" type="password" name="password" placeholder="Senha"
                             class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     </div>
                     <button type="submit"

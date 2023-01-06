@@ -7,6 +7,7 @@ export default {
                 model: this.car.model,
                 year: this.car.year,
                 color: this.car.color,
+                description: this.car.description,
             }),
         }
     },
@@ -24,7 +25,8 @@ export default {
 
 <template>
 
-    <body class="h-screen bg-gradient-to-r from-indigo-300 to-purple-400 items-center flex justify-center content-center">
+    <body
+        class="h-screen bg-gradient-to-r from-indigo-300 to-purple-400 items-center flex justify-center content-center">
         <div class=" flex justify-center">
             <div>
                 <form @submit.prevent="updateCar()" class="m-5 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-80">
@@ -38,6 +40,8 @@ export default {
                         <input type="text" v-model="form.year" name="year" placeholder="Ano"
                             class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         <input type="text" v-model="form.color" name="color" placeholder="Cor"
+                            class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <input type="text" v-model="form.description" name="description" placeholder="Descrição"
                             class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
 
                     </div>

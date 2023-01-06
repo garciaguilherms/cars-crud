@@ -38,7 +38,7 @@ export default {
                             class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         <input type="text" v-model="registerForm.email" name="email" placeholder="E-mail"
                             class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        <input type="text" v-model="registerForm.password" name="password" placeholder="Senha"
+                        <input type="password" v-model="registerForm.password" name="password" placeholder="Senha"
                             class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     </div>
                     <button type="submit"

@@ -54,6 +54,7 @@ class CarController extends Controller
             'model' => 'required',
             'year' => 'required',
             'color' => 'required',
+            'description' => 'required',
         ]);
 
         $request->user()->cars()->create($validated);
@@ -75,6 +76,7 @@ class CarController extends Controller
             'model' => $request->model,
             'year' => $request->year,
             'color' => $request->color,
+            'description' => $request->description,
         ]);
         return redirect('/cars');
     }

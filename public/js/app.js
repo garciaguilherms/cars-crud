@@ -2133,7 +2133,8 @@ __webpack_require__.r(__webpack_exports__);
         name: this.car.name,
         model: this.car.model,
         year: this.car.year,
-        color: this.car.color
+        color: this.car.color,
+        description: this.car.description
       })
     };
   },
@@ -2214,7 +2215,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         name: '',
         model: '',
         year: ''
-      }, _defineProperty(_this$$inertia$form, "model", ''), _defineProperty(_this$$inertia$form, "color", ''), _this$$inertia$form))
+      }, _defineProperty(_this$$inertia$form, "model", ''), _defineProperty(_this$$inertia$form, "color", ''), _defineProperty(_this$$inertia$form, "description", ''), _this$$inertia$form))
     };
   },
   props: {
@@ -58412,6 +58413,33 @@ var render = function () {
                     },
                   },
                 }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.description,
+                      expression: "form.description",
+                    },
+                  ],
+                  staticClass:
+                    "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+                  attrs: {
+                    type: "text",
+                    name: "description",
+                    placeholder: "Descrição",
+                  },
+                  domProps: { value: _vm.form.description },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "description", $event.target.value)
+                    },
+                  },
+                }),
               ]),
               _vm._v(" "),
               _c(
@@ -58888,6 +58916,38 @@ var render = function () {
                           },
                         }),
                         _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.description,
+                              expression: "form.description",
+                            },
+                          ],
+                          staticClass:
+                            "bg-zinc-100 mb-5 shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+                          attrs: {
+                            type: "text",
+                            autocomplete: "off",
+                            name: "description",
+                            placeholder: "Descrição",
+                          },
+                          domProps: { value: _vm.form.description },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form,
+                                "description",
+                                $event.target.value
+                              )
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
                         _vm._m(0),
                       ]
                     ),
@@ -59007,7 +59067,7 @@ var render = function () {
                   staticClass:
                     "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
                   attrs: {
-                    type: "text",
+                    type: "password",
                     name: "password",
                     placeholder: "Senha",
                   },
@@ -59149,7 +59209,28 @@ var render = function () {
             ]),
           ]),
           _vm._v(" "),
-          _vm._m(2),
+          _c("div", { staticClass: "flex justify-center mt-5" }, [
+            _c("table", { staticClass: "justify-center" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "bg-white bg-white rounded-md shadow-md divide-y",
+                },
+                [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c("tbody", [
+                    _c("tr", { staticClass: "text-base" }, [
+                      _c("td", { staticClass: "px-20 py-2" }, [
+                        _vm._v(_vm._s(_vm.car.description)),
+                      ]),
+                    ]),
+                  ]),
+                ]
+              ),
+            ]),
+          ]),
         ]),
       ]),
     ]
@@ -59184,30 +59265,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex justify-center mt-5" }, [
-      _c("table", { staticClass: "justify-center" }, [
-        _c(
-          "div",
-          { staticClass: "bg-white bg-white rounded-md shadow-md divide-y" },
-          [
-            _c("thead", [
-              _c("tr", [
-                _c("th", { staticClass: "px-20" }, [_vm._v("Descrição")]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("tbody", [
-              _c("tr", { staticClass: "text-base" }, [
-                _c("td", { staticClass: "px-20 py-2" }, [
-                  _vm._v(
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed\n                                    laoreet, enim vitae elementum porta, enim tortor ultrices magna, laoreet\n                                    sollicitudin massa lorem sed nulla. Aenean placerat eros eget libero volutpat\n                                    sagittis. Duis metus lacus, pulvinar eu justo vel, vehicula ultrices nisi.\n                                    Vivamus lacinia ultricies dui non dignissim. Nunc ut turpis aliquet, tempus eros\n                                    quis, varius metus. Morbi ac ornare odio. Duis laoreet tempus sem at dignissim.\n                                    Quisque eu felis ante. Sed pretium nibh id dapibus placerat. Interdum et\n                                    malesuada fames ac ante ipsum primis in faucibus.\n\n                                    Donec euismod risus sit amet lorem lobortis iaculis. Curabitur orci sem,\n                                    condimentum vitae mi eget, condimentum efficitur purus. Integer placerat\n                                    pellentesque urna. Curabitur et lacus est. Nulla ullamcorper sodales diam vitae\n                                    tristique. Nunc elementum elit vel nunc tincidunt, vel lacinia purus consequat.\n                                    Duis fringilla, augue condimentum aliquam tincidunt, ligula diam tristique\n                                    lacus, non ultrices tortor ex vel neque. Suspendisse tempor convallis interdum.\n                                    Nulla tempus elit et leo sagittis blandit. Nulla congue dignissim eros, id\n                                    lobortis ipsum pellentesque vel. Duis non lacus a ipsum laoreet sodales.\n                                    Phasellus rutrum volutpat facilisis."
-                  ),
-                ]),
-              ]),
-            ]),
-          ]
-        ),
-      ]),
+    return _c("thead", [
+      _c("tr", [_c("th", { staticClass: "px-20" }, [_vm._v("Descrição")])]),
     ])
   },
 ]
@@ -59317,7 +59376,7 @@ var render = function () {
                   staticClass:
                     "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
                   attrs: {
-                    type: "text",
+                    type: "password",
                     name: "password",
                     placeholder: "Senha",
                   },

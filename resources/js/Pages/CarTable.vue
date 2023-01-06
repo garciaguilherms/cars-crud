@@ -5,11 +5,9 @@ export default {
             user: this.$page.props.user,
         }
     },
-
     props: {
         cars: Array,
     },
-
     methods: {
         deleteCar(car) {
             this.$inertia.post('/cars/' + car.id, {
@@ -24,13 +22,10 @@ export default {
         }
     },
 }
-
-
 </script>
 
 <template>
     <div>
-
         <body class="w-screen flex justify-center">
             <table class="table-auto divide-y">
                 <div class="bg-white bg-white rounded-md shadow-md divide-y">
