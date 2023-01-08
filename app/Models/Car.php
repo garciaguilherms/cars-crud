@@ -15,7 +15,8 @@ class Car extends Model
         'year',
         'color',
         'description',
-        'user_id'
+        'user_id',
+        'brand_id'
     ];
 
     public function user()
@@ -27,6 +28,11 @@ class Car extends Model
     public function histories()
     {
         return $this->hasMany(CarHistory::class)->orderBy('created_at', 'desc');
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
     }
 
     public function insertHistory(): CarHistory
