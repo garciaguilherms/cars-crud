@@ -25,6 +25,8 @@ class CarController extends Controller
 
             ->orWhere('color', 'like', '%' . $term . '%')
 
+            ->orWhere('license_plate', 'like', '%' . $term . '%')
+
             ->orWhereHas('brand', function ($query) use ($term) {
                 $query->where('name', 'like', '%' . $term . '%');
             })
@@ -34,7 +36,9 @@ class CarController extends Controller
             })
             ->get();
 
-        $user = $request->user()->only('id', 'name', 'email');
+        $user = $request->user()
+            ? $request->user()->only('id', 'name', 'email')
+            : null;
 
         $brands = Brand::all();
 
@@ -66,15 +70,18 @@ class CarController extends Controller
     public function edit(Car $car)
     {
         $car = $car->load('user:id,name', 'brand:id,name');
+        $brands = Brand::all();
 
         return Inertia::render('EditCar', [
             'car' => $car,
+            'brands' => $brands,
         ]);
     }
 
     public function update(Request $request, Car $car)
     {
         $car->update([
+            'brand_id' => $request->brand_id,
             'model' => $request->model,
             'year' => $request->year,
             'color' => $request->color,
@@ -92,7 +99,7 @@ class CarController extends Controller
 
     public function history(Car $car)
     {
-        $cars = $car->histories()->with('user:id,name')->get();
+        $cars = $car->histories()->with('user:id,name', 'brand:id,name')->get();
 
         return Inertia::render('History', [
             'cars' => $cars
@@ -106,5 +113,15 @@ class CarController extends Controller
         return Inertia::render('More', [
             'car' => $car
         ]);
+    }
+
+    public function storeBrand(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required',
+        ]);
+
+        Brand::create($validated);
+        return redirect('/cars');
     }
 }

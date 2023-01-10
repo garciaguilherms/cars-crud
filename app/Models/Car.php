@@ -15,7 +15,7 @@ class Car extends Model
         'color',
         'description',
         'user_id',
-        'brand_id'
+        'brand_id',
         'license_plate'
     ];
 
@@ -26,13 +26,18 @@ class Car extends Model
 
     public function histories()
     {
-        
+
         return $this->hasMany(CarHistory::class)->orderBy('created_at', 'desc');
     }
 
     public function brand()
     {
         return $this->belongsTo(Brand::class);
+    }
+
+    public function brandModel()
+    {
+        return $this->belongsTo(BrandModel::class);
     }
 
     public function insertHistory(): CarHistory

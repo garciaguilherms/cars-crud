@@ -35,6 +35,7 @@ export default {
                         <tr>
                             <th class="px-20">Marca</th>
                             <th class="px-20">Modelo</th>
+                            <th class="px-20">Placa</th>
                             <th class="px-20">Ano</th>
                             <th class="px-20">Cor</th>
                             <th class="px-20">Criador</th>
@@ -45,9 +46,11 @@ export default {
                         <tr class="text-base" v-for="car in cars" :key="car.id">
                             <td class="px-20 py-2">{{ car.brand.name }}</td>
                             <td class="px-20 py-2">{{ car.model }}</td>
+                            <td class="px-20 py-2">{{ car.license_plate }}</td>
                             <td class="px-20 py-2">{{ car.year }}</td>
                             <td class="px-20 py-2">{{ car.color }}</td>
                             <td class="px-20 py-2">{{ car.user.name }}</td>
+
                             <div class="flex w-full justify-center space-x-3 mt-1">
                                 <td>
                                     <button v-if="car.user_id == user.id"

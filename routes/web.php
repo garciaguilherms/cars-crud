@@ -29,3 +29,6 @@ Route::get('/cars/{car}/history', [CarController::class, 'history']);
 
 //Mais informações
 Route::get('/cars/{car}/more', [CarController::class, 'more']);
+
+//Marcas 
+Route::post('/brands/store', [CarController::class, 'storeBrand']);

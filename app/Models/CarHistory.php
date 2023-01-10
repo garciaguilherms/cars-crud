@@ -16,7 +16,8 @@ class CarHistory extends Model
         'model',
         'year',
         'color',
-        'brand_id'
+        'brand_id',
+        'license_plate'
     ];
 
     public function user()
@@ -27,5 +28,10 @@ class CarHistory extends Model
     public function car()
     {
         return $this->belongsTo(Car::class);
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
     }
 }

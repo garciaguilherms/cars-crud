@@ -8,18 +8,24 @@ export default {
             show: true,
             term: '',
             open: false,
+            brandFormOpen: false,
+            brandForm: this.$inertia.form({
+                name: '',
+            }),
+
             form: this.$inertia.form({
                 brand_id: '',
                 model: '',
                 year: '',
                 color: '',
+                license_plate: '',
                 description: '',
             }),
         }
     },
     props: {
         cars: Array,
-        user: Array,
+        user: Object,
         brands: Array,
     },
 
@@ -32,6 +38,12 @@ export default {
             const open = this.open;
             open == true ? this.open = false : this.open = true;
         },
+
+        openBrandForm() {
+            const open = this.brandFormOpen;
+            open == true ? this.brandFormOpen = false : this.brandFormOpen = true;
+        },
+
         search() {
             this.$inertia.get('/cars', { term: this.term }, { preserveState: true });
         },
@@ -49,6 +61,10 @@ export default {
                         <button @click="openForm()"
                             class="m-4 px-1 py-1 bg-green-600 shadow-sm hover:bg-green-700  rounded text-white font-bold h-8 items-center">Adicionar
                             Carro</button>
+
+                        <button @click="openBrandForm()"
+                            class="m-4 px-1 py-1 bg-yellow-600 shadow-sm hover:bg-yellow-700  rounded text-white font-bold h-8 items-center">Adicionar
+                            Marca</button>
                     </div>
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -58,7 +74,7 @@ export default {
                         </svg>
 
                         <input v-model="term" @keyup="search" placeholder="Pesquisar"
-                            class="m-4 px-1 py-1 bg-zinc-100 rounded shadow-sm font-bold">
+                            class="m-4 mr-64 px-1 py-1 bg-zinc-100 rounded shadow-sm font-bold">
                     </div>
                     <div>
                         <div class="m-4 px-3 rounded font-bold flex h-8 items-center">
@@ -89,10 +105,20 @@ export default {
                     <form @submit.prevent="form.post(('/cars/store'), { onSuccess: () => form.reset() })">
 
                         <div class="flex bg-stone-50 rounded mb-5 gap-3 pt-5 px-2">
-                            <div v-for="brand in brands">
-                                <input type="radio" v-model="form.brand_id" :value="brand.id" :id="brand.id">
-                                <label :for="brand.id">{{ brand.name }}</label>
-                            </div>
+                            <select placeholder="marca" v-model="form.brand_id" name="brand_id"
+                                class="bg-zinc-100 mb-5 shadow-sm appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <option value="" disabled selected>Marca</option>
+                                <option v-for="brand in brands" :value="brand.id">
+                                    {{ brand.name }}
+                                </option>
+                            </select>
+
+                            <input type="text" autocomplete="off" v-model="form.model" name="model" placeholder="Modelo"
+                                class="bg-zinc-100 mb-5 shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+
+                            <input type="text" autocomplete="off" v-model="form.license_plate" name="licence_plate"
+                                placeholder="Placa"
+                                class="bg-zinc-100 mb-5 shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
 
                             <section>
                                 <date-picker valueType="format" v-model="form.year" type="year" placeholder="Ano"
@@ -105,17 +131,25 @@ export default {
                             <input type="text" autocomplete="off" v-model="form.description" name="description"
                                 placeholder="Descrição"
                                 class="bg-zinc-100 mb-5 shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-
-                            <input type="text" autocomplete="off" v-model="form.model" name="model" placeholder="Modelo"
+                            <div>
+                                <button type="submit"
+                                    class="py-1 px-3 mt-1 bg-green-600 hover:bg-green-700 rounded font-bold text-white">Enviar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div v-if="brandFormOpen == true" class="flex justify-center">
+                    <form @submit.prevent="brandForm.post(('/brands/store'))">
+                        <div class="flex bg-stone-50 rounded mb-5 gap-3 pt-5 px-2">
+                            <input type="text" autocomplete="off" v-model="brandForm.name" name="name"
+                                placeholder="Marca"
                                 class="bg-zinc-100 mb-5 shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                             <div>
                                 <button type="submit"
                                     class="py-1 px-3 mt-1 bg-green-600 hover:bg-green-700 rounded font-bold text-white">Enviar</button>
                             </div>
                         </div>
-
                     </form>
-
                 </div>
                 <div>
                     <CarTable :cars="cars" />

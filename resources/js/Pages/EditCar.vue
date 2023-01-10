@@ -6,7 +6,7 @@ export default {
     data() {
         return {
             form: this.$inertia.form({
-                name: this.car.brand.name,
+                brand_id: this.car.brand_id,
                 model: this.car.model,
                 year: this.car.year,
                 color: this.car.color,
@@ -16,8 +16,7 @@ export default {
     },
     props: {
         car: Object,
-        brand: Array
-
+        brands: Array,
     },
     methods: {
         updateCar() {
@@ -41,15 +40,24 @@ export default {
 
                     <div>
                         <h1 class="text-xl font-bold mb-5">Editar Carro</h1>
-                        <input type="text" v-model="form.name" name="name" placeholder="Nome"
-                            class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+
+                        <select v-model="form.brand_id" name="brand_id"
+                            class="w-64 bg-zinc-100 mb-5 shadow-sm appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <option value="" disabled selected>Marca</option>
+                            <option v-for="brand in brands" :value="brand.id">
+                                {{ brand.name }}
+                            </option>
+                        </select>
+
                         <input type="text" v-model="form.model" name="model" placeholder="Modelo"
                             class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+
                         <section>
                             <date-picker valueType="format" v-model="form.year" type="year" placeholder="Ano"
-                                input-class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                input-class="w-64 mb-5 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                             </date-picker>
                         </section>
+
                         <input type="text" v-model="form.color" name="color" placeholder="Cor"
                             class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         <input type="text" v-model="form.description" name="description" placeholder="Descrição"

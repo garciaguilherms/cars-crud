@@ -41,16 +41,17 @@ export default {
                         <tr>
                             <th class="px-20">Marca</th>
                             <th class="px-20">Modelo</th>
+                            <th class="px-20">Placa</th>
                             <th class="px-20">Ano</th>
                             <th class="px-20">Cor</th>
                             <th class="px-20">Data</th>
-
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="text-base" v-for="car in cars" :key="car.id">
-                            <td class="px-20 py-2">{{ car.brand_id}}</td>
+                            <td class="px-20 py-2">{{ car.brand.name }}</td>
                             <td class="px-20 py-2">{{ car.model }}</td>
+                            <td class="px-20 py-2">{{ car.license_plate }}</td>
                             <td class="px-20 py-2">{{ car.year }}</td>
                             <td class="px-20 py-2">{{ car.color }}</td>
                             <td class="px-20 py-2">{{ moment(car.created_at).fromNow() }}</td>
