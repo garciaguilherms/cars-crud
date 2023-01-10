@@ -1,9 +1,12 @@
 <script>
+import DatePicker from 'vue2-datepicker';
+import 'vue2-datepicker/index.css';
+
 export default {
     data() {
         return {
             form: this.$inertia.form({
-                name: this.car.name,
+                name: this.car.brand.name,
                 model: this.car.model,
                 year: this.car.year,
                 color: this.car.color,
@@ -13,11 +16,16 @@ export default {
     },
     props: {
         car: Object,
+        brand: Array
+
     },
     methods: {
         updateCar() {
             this.form.put((`/cars/${this.car.id}`), { onSuccess: () => this.form.reset() }, { onError: () => alert('Error') })
         }
+    },
+    components: {
+        DatePicker
     },
 
 }
@@ -37,8 +45,11 @@ export default {
                             class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         <input type="text" v-model="form.model" name="model" placeholder="Modelo"
                             class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        <input type="text" v-model="form.year" name="year" placeholder="Ano"
-                            class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <section>
+                            <date-picker valueType="format" v-model="form.year" type="year" placeholder="Ano"
+                                input-class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            </date-picker>
+                        </section>
                         <input type="text" v-model="form.color" name="color" placeholder="Cor"
                             class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         <input type="text" v-model="form.description" name="description" placeholder="Descrição"

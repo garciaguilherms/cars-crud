@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('brand_id')->constrained();
-            $table->string('name');
+            $table->foreignId('brand_id')->constrained('brands');
+            $table->foreignId('user_id')->constrained('users');
             $table->string('model');
             $table->string('year');
             $table->string('color');
+            $table->string('license_plate');
             $table->text('description');
             $table->timestamps();
         });

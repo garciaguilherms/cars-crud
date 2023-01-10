@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('brand_models', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('brand_id')->constrained();
+            $table->foreignId('brand_id')->constrained('brands');
             $table->timestamps();
         });
     }

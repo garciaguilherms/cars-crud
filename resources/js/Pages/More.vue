@@ -34,15 +34,15 @@ export default {
                         <div class="bg-white bg-white rounded-md shadow-md divide-y">
                             <thead>
                                 <tr>
-                                    <th class="px-20">Nome</th>
+                                    <th class="px-20">Marca</th>
                                     <th class="px-20">Modelo</th>
                                     <th class="px-20">Ano</th>
                                     <th class="px-20">Cor</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="text-base">
-                                    <td class="px-20 py-2">{{ car.name }}</td>
+                                <tr>
+                                    <td class="px-20 py-2">{{ car.brand.name }}</td>
                                     <td class="px-20 py-2">{{ car.model }}</td>
                                     <td class="px-20 py-2">{{ car.year }}</td>
                                     <td class="px-20 py-2">{{ car.color }}</td>

@@ -8,6 +8,7 @@ export default {
     props: {
         cars: Array,
     },
+
     methods: {
         deleteCar(car) {
             this.$inertia.post('/cars/' + car.id, {
@@ -26,12 +27,13 @@ export default {
 
 <template>
     <div>
+
         <body class="w-screen flex justify-center">
             <table class="table-auto divide-y">
                 <div class="bg-white bg-white rounded-md shadow-md divide-y">
                     <thead>
                         <tr>
-                            <th class="px-20">Nome</th>
+                            <th class="px-20">Marca</th>
                             <th class="px-20">Modelo</th>
                             <th class="px-20">Ano</th>
                             <th class="px-20">Cor</th>
@@ -41,7 +43,7 @@ export default {
                     </thead>
                     <tbody class="divide-y">
                         <tr class="text-base" v-for="car in cars" :key="car.id">
-                            <td class="px-20 py-2">{{ car.name }}</td>
+                            <td class="px-20 py-2">{{ car.brand.name }}</td>
                             <td class="px-20 py-2">{{ car.model }}</td>
                             <td class="px-20 py-2">{{ car.year }}</td>
                             <td class="px-20 py-2">{{ car.color }}</td>

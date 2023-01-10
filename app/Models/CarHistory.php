@@ -13,14 +13,19 @@ class CarHistory extends Model
     protected $fillable = [
         'car_id',
         'user_id',
-        'name',
         'model',
         'year',
         'color',
+        'brand_id'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function car()
+    {
+        return $this->belongsTo(Car::class);
     }
 }

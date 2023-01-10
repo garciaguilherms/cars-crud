@@ -30,10 +30,7 @@ export default {
                     <h1 class="font-bold mr-28">Histórico de Alterações</h1>
                 </div>
                 <div>
-
                 </div>
-
-
             </div>
 
         </div>
@@ -42,7 +39,7 @@ export default {
                 <div class="bg-white bg-white rounded-md shadow-md divide-y">
                     <thead>
                         <tr>
-                            <th class="px-20">Nome</th>
+                            <th class="px-20">Marca</th>
                             <th class="px-20">Modelo</th>
                             <th class="px-20">Ano</th>
                             <th class="px-20">Cor</th>
@@ -52,7 +49,7 @@ export default {
                     </thead>
                     <tbody>
                         <tr class="text-base" v-for="car in cars" :key="car.id">
-                            <td class="px-20 py-2">{{ car.name }}</td>
+                            <td class="px-20 py-2">{{ car.brand_id}}</td>
                             <td class="px-20 py-2">{{ car.model }}</td>
                             <td class="px-20 py-2">{{ car.year }}</td>
                             <td class="px-20 py-2">{{ car.color }}</td>

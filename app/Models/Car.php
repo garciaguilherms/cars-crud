@@ -10,23 +10,23 @@ class Car extends Model
     use HasFactory;
     protected $fillable = [
         'car_id',
-        'name',
         'model',
         'year',
         'color',
         'description',
         'user_id',
         'brand_id'
+        'license_plate'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
-        
     }
 
     public function histories()
     {
+        
         return $this->hasMany(CarHistory::class)->orderBy('created_at', 'desc');
     }
 
@@ -40,10 +40,11 @@ class Car extends Model
         return CarHistory::firstOrCreate([
             'user_id' => $this->user_id,
             'car_id' => $this->id,
-            'name' => $this->name,
+            'brand_id' => $this->brand_id,
             'model' => $this->model,
             'year' => $this->year,
             'color' => $this->color,
+            'license_plate' => $this->license_plate,
 
         ]);
     }

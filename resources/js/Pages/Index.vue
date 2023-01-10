@@ -1,6 +1,7 @@
 <script>
 import CarTable from './CarTable.vue';
-
+import DatePicker from 'vue2-datepicker';
+import 'vue2-datepicker/index.css';
 export default {
     data() {
         return {
@@ -8,10 +9,9 @@ export default {
             term: '',
             open: false,
             form: this.$inertia.form({
-                name: '',
+                brand_id: '',
                 model: '',
                 year: '',
-                model: '',
                 color: '',
                 description: '',
             }),
@@ -20,10 +20,13 @@ export default {
     props: {
         cars: Array,
         user: Array,
+        brands: Array,
     },
+
     components: {
-        CarTable,
+        CarTable, DatePicker
     },
+
     methods: {
         openForm() {
             const open = this.open;
@@ -42,7 +45,6 @@ export default {
         <div class="flex justify-center items-center">
             <div class="mb-5 w-full">
                 <div class="bg-stone-50 w-full h-20 mb-5 flex justify-between items-center">
-
                     <div>
                         <button @click="openForm()"
                             class="m-4 px-1 py-1 bg-green-600 shadow-sm hover:bg-green-700  rounded text-white font-bold h-8 items-center">Adicionar
@@ -58,14 +60,8 @@ export default {
                         <input v-model="term" @keyup="search" placeholder="Pesquisar"
                             class="m-4 px-1 py-1 bg-zinc-100 rounded shadow-sm font-bold">
                     </div>
-
                     <div>
                         <div class="m-4 px-3 rounded font-bold flex h-8 items-center">
-                            <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="mt-0.5 mr-1 w-5 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg> -->
                             <t-dropdown>
                                 <div slot="trigger" slot-scope="{mousedownHandler}">
                                     <button id="user-menu" aria-label="User menu" aria-haspopup="true"
@@ -77,9 +73,6 @@ export default {
                                         </svg></button>
 
                                 </div>
-
-
-
                                 <div slot-scope="{ hide, blurHandler }">
                                     <button
                                         class="block w-20 px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
@@ -91,30 +84,30 @@ export default {
 
                         </div>
                     </div>
-
-
-
                 </div>
-                <!--  -->
                 <div v-if="open == true" class="flex justify-center">
                     <form @submit.prevent="form.post(('/cars/store'), { onSuccess: () => form.reset() })">
 
                         <div class="flex bg-stone-50 rounded mb-5 gap-3 pt-5 px-2">
-                            <input type="text" autocomplete="off" v-model="form.name" name="name" placeholder="Nome"
+                            <div v-for="brand in brands">
+                                <input type="radio" v-model="form.brand_id" :value="brand.id" :id="brand.id">
+                                <label :for="brand.id">{{ brand.name }}</label>
+                            </div>
+
+                            <section>
+                                <date-picker valueType="format" v-model="form.year" type="year" placeholder="Ano"
+                                    input-class="bg-zinc-100 mb-5 shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></date-picker>
+                            </section>
+
+                            <input type="text" autocomplete="off" v-model="form.color" name="color" placeholder="Cor"
+                                class="bg-zinc-100 mb-5 shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+
+                            <input type="text" autocomplete="off" v-model="form.description" name="description"
+                                placeholder="Descrição"
                                 class="bg-zinc-100 mb-5 shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
 
                             <input type="text" autocomplete="off" v-model="form.model" name="model" placeholder="Modelo"
                                 class="bg-zinc-100 mb-5 shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-
-                            <input type="text" autocomplete="off" v-model="form.year" name="year" placeholder="Ano"
-                                class="bg-zinc-100 mb-5 shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-
-                            <input type="text" autocomplete="off" v-model="form.color" name="color" placeholder="Cor"
-                                class="bg-zinc-100 mb-5 shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                            <input type="text" autocomplete="off" v-model="form.description" name="description"
-                            placeholder="Descrição"
-                                class="bg-zinc-100 mb-5 shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-
                             <div>
                                 <button type="submit"
                                     class="py-1 px-3 mt-1 bg-green-600 hover:bg-green-700 rounded font-bold text-white">Enviar</button>
