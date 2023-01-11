@@ -58,9 +58,6 @@ export default {
                             </option>
                         </select>
 
-                        <input type="text" v-model="form.model" name="model" placeholder="Modelo"
-                            class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-
                         <section>
                             <date-picker valueType="format" v-model="form.year" type="year" placeholder="Ano"
                                 input-class="w-64 mb-5 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
@@ -69,8 +66,8 @@ export default {
 
                         <input type="text" v-model="form.color" name="color" placeholder="Cor"
                             class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        
-                            <input type="text" v-model="form.description" name="description" placeholder="Descrição"
+
+                        <input type="text" v-model="form.description" name="description" placeholder="Descrição"
                             class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
 
                     </div>

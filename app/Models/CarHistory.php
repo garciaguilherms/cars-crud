@@ -34,4 +34,9 @@ class CarHistory extends Model
     {
         return $this->belongsTo(Brand::class);
     }
+
+    public function brand_model()
+    {
+        return $this->belongsTo(BrandModel::class);
+    }
 }

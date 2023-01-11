@@ -2220,6 +2220,11 @@ __webpack_require__.r(__webpack_exports__);
       term: '',
       open: false,
       brandFormOpen: false,
+      modelFormOpen: false,
+      modelForm: this.$inertia.form({
+        name: '',
+        brand_id: ''
+      }),
       brandForm: this.$inertia.form({
         name: ''
       }),
@@ -2251,6 +2256,10 @@ __webpack_require__.r(__webpack_exports__);
     openBrandForm: function openBrandForm() {
       var open = this.brandFormOpen;
       open == true ? this.brandFormOpen = false : this.brandFormOpen = true;
+    },
+    openModelForm: function openModelForm() {
+      var open = this.modelFormOpen;
+      open == true ? this.modelFormOpen = false : this.modelFormOpen = true;
     },
     search: function search() {
       this.$inertia.get('/cars', {
@@ -59220,7 +59229,7 @@ var render = function () {
                   ]),
                   _vm._v(" "),
                   _c("td", { staticClass: "px-20 py-2" }, [
-                    _vm._v(_vm._s(car.brand_model_id)),
+                    _vm._v(_vm._s(car.brand_model.name)),
                   ]),
                   _vm._v(" "),
                   _c("td", { staticClass: "px-20 py-2" }, [
@@ -59600,29 +59609,6 @@ var render = function () {
                   2
                 ),
                 _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.model,
-                      expression: "form.model",
-                    },
-                  ],
-                  staticClass:
-                    "mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
-                  attrs: { type: "text", name: "model", placeholder: "Modelo" },
-                  domProps: { value: _vm.form.model },
-                  on: {
-                    input: function ($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.form, "model", $event.target.value)
-                    },
-                  },
-                }),
-                _vm._v(" "),
                 _c(
                   "section",
                   [
@@ -59789,7 +59775,7 @@ var render = function () {
                     ]),
                     _vm._v(" "),
                     _c("td", { staticClass: "px-20 py-2" }, [
-                      _vm._v(_vm._s(car.brand_model_id)),
+                      _vm._v(_vm._s(car.brand_model.name)),
                     ]),
                     _vm._v(" "),
                     _c("td", { staticClass: "px-20 py-2" }, [
@@ -59912,6 +59898,20 @@ var render = function () {
                     },
                   },
                   [_vm._v("Adicionar\n                        Marca")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "m-4 px-1 py-1 bg-yellow-600 shadow-sm hover:bg-yellow-700 rounded text-white font-bold h-8 items-center",
+                    on: {
+                      click: function ($event) {
+                        return _vm.openModelForm()
+                      },
+                    },
+                  },
+                  [_vm._v("Adicionar\n                        Modelo")]
                 ),
               ]),
               _vm._v(" "),
@@ -60394,6 +60394,130 @@ var render = function () {
               ])
             : _vm._e(),
           _vm._v(" "),
+          _vm.modelFormOpen == true
+            ? _c("div", { staticClass: "flex justify-center" }, [
+                _c(
+                  "form",
+                  {
+                    on: {
+                      submit: function ($event) {
+                        $event.preventDefault()
+                        _vm.modelForm.post("/models/store")
+                      },
+                    },
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "flex bg-stone-50 rounded mb-5 gap-3 pt-5 px-2",
+                      },
+                      [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.modelForm.name,
+                              expression: "modelForm.name",
+                            },
+                          ],
+                          staticClass:
+                            "bg-zinc-100 mb-5 shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+                          attrs: {
+                            type: "text",
+                            autocomplete: "off",
+                            name: "name",
+                            placeholder: "Modelo",
+                          },
+                          domProps: { value: _vm.modelForm.name },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.modelForm,
+                                "name",
+                                $event.target.value
+                              )
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.modelForm.brand_id,
+                                expression: "modelForm.brand_id",
+                              },
+                            ],
+                            staticClass:
+                              "bg-zinc-100 mb-5 shadow-sm appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+                            attrs: { placeholder: "marca", name: "brand_id" },
+                            on: {
+                              change: function ($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function (o) {
+                                    return o.selected
+                                  })
+                                  .map(function (o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.modelForm,
+                                  "brand_id",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              },
+                            },
+                          },
+                          [
+                            _c(
+                              "option",
+                              {
+                                attrs: {
+                                  value: "",
+                                  disabled: "",
+                                  selected: "",
+                                },
+                              },
+                              [_vm._v("Marca")]
+                            ),
+                            _vm._v(" "),
+                            _vm._l(_vm.brands, function (brand) {
+                              return _c(
+                                "option",
+                                { domProps: { value: brand.id } },
+                                [
+                                  _vm._v(
+                                    "\n                                " +
+                                      _vm._s(brand.name) +
+                                      "\n                            "
+                                  ),
+                                ]
+                              )
+                            }),
+                          ],
+                          2
+                        ),
+                        _vm._v(" "),
+                        _vm._m(2),
+                      ]
+                    ),
+                  ]
+                ),
+              ])
+            : _vm._e(),
+          _vm._v(" "),
           _c("div", [_c("CarTable", { attrs: { cars: _vm.cars } })], 1),
         ]),
       ]),
@@ -60401,6 +60525,22 @@ var render = function () {
   )
 }
 var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c(
+        "button",
+        {
+          staticClass:
+            "py-1 px-3 mt-1 bg-green-600 hover:bg-green-700 rounded font-bold text-white",
+          attrs: { type: "submit" },
+        },
+        [_vm._v("Enviar")]
+      ),
+    ])
+  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -60646,7 +60786,11 @@ var render = function () {
                       ]),
                       _vm._v(" "),
                       _c("td", { staticClass: "px-20 py-2" }, [
-                        _vm._v(_vm._s(_vm.car.brand_model_id)),
+                        _vm._v(_vm._s(_vm.car.brand_model.name)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "px-20 py-2" }, [
+                        _vm._v(_vm._s(_vm.car.license_plate)),
                       ]),
                       _vm._v(" "),
                       _c("td", { staticClass: "px-20 py-2" }, [
@@ -60708,6 +60852,8 @@ var staticRenderFns = [
         _c("th", { staticClass: "px-20" }, [_vm._v("Marca")]),
         _vm._v(" "),
         _c("th", { staticClass: "px-20" }, [_vm._v("Modelo")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "px-20" }, [_vm._v("Placa")]),
         _vm._v(" "),
         _c("th", { staticClass: "px-20" }, [_vm._v("Ano")]),
         _vm._v(" "),

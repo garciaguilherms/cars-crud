@@ -32,3 +32,6 @@ Route::get('/cars/{car}/more', [CarController::class, 'more']);
 
 //Marcas 
 Route::post('/brands/store', [CarController::class, 'storeBrand']);
+
+//Modelos
+Route::post('/models/store', [CarController::class, 'storeModel']);
