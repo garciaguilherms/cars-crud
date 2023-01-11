@@ -4,6 +4,15 @@ import Vue from 'vue'
 import VueTailwind from 'vue-tailwind'
 import { TDropdown } from 'vue-tailwind/dist/components'
 import { createInertiaApp } from '@inertiajs/inertia-vue'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faCalendar } from '@fortawesome/free-regular-svg-icons'
+import { faDroplet } from '@fortawesome/free-solid-svg-icons';
+
+
+library.add(faDroplet, faCalendar,)
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 const settings = {
   't-dropdown': {

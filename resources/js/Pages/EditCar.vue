@@ -37,8 +37,8 @@ export default {
         class="h-screen bg-gradient-to-r from-indigo-300 to-purple-400 items-center flex justify-center content-center">
         <div class=" flex justify-center">
             <div>
-                <form @submit.prevent="updateCar()" class="m-5 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-80">
-
+                <form @submit.prevent="updateCar()"
+                    class="w-full m-5 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-80">
                     <div>
                         <div class="flex justify-between">
                             <h1 class="text-xl font-bold mb-5">Editar Carro</h1>
@@ -48,7 +48,7 @@ export default {
 
 
                         <select v-model="form.brand_id" name="brand_id"
-                            class="w-64 bg-zinc-100 mb-5 shadow-sm appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            class="w-full bg-zinc-100 mb-5 shadow-sm appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                             <option value="" disabled selected>Marca</option>
                             <option v-for="brand in brands" :value="brand.id">
                                 {{ brand.name }}
@@ -56,18 +56,21 @@ export default {
                         </select>
 
                         <select v-model="form.brand_model_id" name="brand_model_id"
-                            class="w-64 bg-zinc-100 mb-5 shadow-sm appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            class="w-full bg-zinc-100 mb-5 shadow-sm appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                             <option value="" disabled selected>Marca</option>
                             <option v-for="model in models" :value="model.id">
                                 {{ model.name }}
                             </option>
                         </select>
 
-                        <section>
-                            <date-picker valueType="format" v-model="form.year" type="year" placeholder="Ano"
-                                input-class="w-64 mb-5 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                            </date-picker>
-                        </section>
+                        <date-picker valueType="format" v-model="form.year" type="year" placeholder="Ano"
+                            input-class="w-64 mb-5 shadow appearance-none border rounded py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline">
+                            <i slot="icon-calendar">
+                                <div id="app">
+                                    <font-awesome-icon class="mb-5" icon="fa-regular fa-calendar" />
+                                </div>
+                            </i>
+                        </date-picker>
 
                         <input type="text" v-model="form.color" name="color" placeholder="Cor"
                             class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">

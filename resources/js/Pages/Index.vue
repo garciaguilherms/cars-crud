@@ -2,11 +2,12 @@
 import CarTable from './CarTable.vue';
 import DatePicker from 'vue2-datepicker';
 import 'vue2-datepicker/index.css';
+
 export default {
     data() {
         return {
-            show: true,
             term: '',
+            tableOpen: false,
             open: false,
             brandFormOpen: false,
             modelFormOpen: false,
@@ -57,11 +58,33 @@ export default {
             open == true ? this.modelFormOpen = false : this.modelFormOpen = true;
         },
 
+        theresData() {
+            const data = this.cars;
+            data.length > 0 ? this.tableOpen = true : this.tableOpen = false;
+        },
+
         search() {
             this.$inertia.get('/cars', { term: this.term }, { preserveState: true });
         },
+
         modelBelongsToBrand() {
             this.$inertia.get('/cars', { brand_id: this.form.brand_id }, { preserveState: true });
+        },
+
+        hide() {
+            this.open = false;
+        },
+
+        hideBrandForm() {
+            this.brandFormOpen = false;
+        },
+
+        hideModelForm() {
+            this.modelFormOpen = false;
+        },
+
+        hideTable() {
+            this.tableOpen = false;
         },
     },
 }
@@ -138,7 +161,7 @@ export default {
                 <div v-if="open == true" class="flex justify-center">
 
                     <!-- Forms -->
-                    <form @submit.prevent="form.post(('/cars/store'), { onSuccess: () => form.reset() })">
+                    <form @submit.prevent="form.post(('/cars/store'), { onSuccess: () => form.reset() }, hide())">
 
                         <div class="flex bg-stone-50 rounded mb-5 gap-3 pt-5 px-2">
                             <select placeholder="marca" v-model="form.brand_id" name="brand_id"
@@ -163,11 +186,18 @@ export default {
 
                             <section>
                                 <date-picker valueType="format" v-model="form.year" type="year" placeholder="Ano"
-                                    input-class="bg-zinc-100 mb-5 shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></date-picker>
+                                    input-class="bg-zinc-100 mb-5 shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                    <i slot="icon-calendar">
+                                        <div id="app">
+                                            <font-awesome-icon class="mb-5" icon="fa-regular fa-calendar" />
+                                        </div>
+                                    </i>
+                                </date-picker>
                             </section>
 
+
                             <input type="text" autocomplete="off" v-model="form.color" name="color" placeholder="Cor"
-                                class="bg-zinc-100 mb-5 shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                class="bg-zinc-100 mb-5 shadow-sm appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
 
                             <input type="text" autocomplete="off" v-model="form.description" name="description"
                                 placeholder="Descrição"
@@ -180,7 +210,8 @@ export default {
                     </form>
                 </div>
                 <div v-if="brandFormOpen == true" class="flex justify-center">
-                    <form @submit.prevent="brandForm.post(('/brands/store'))">
+                    <form
+                        @submit.prevent="brandForm.post(('/brands/store'), { onSuccess: () => brandForm.reset() }, hideBrandForm())">
                         <div class="flex bg-stone-50 rounded mb-5 gap-3 pt-5 px-2">
                             <input type="text" autocomplete="off" v-model="brandForm.name" name="name"
                                 placeholder="Marca"
@@ -193,8 +224,10 @@ export default {
                     </form>
                 </div>
                 <div v-if="modelFormOpen == true" class="flex justify-center">
-                    <form @submit.prevent="modelForm.post(('/models/store'))">
+                    <form
+                        @submit.prevent="modelForm.post(('/models/store'), { onSuccess: () => modelForm.reset() }, hideModelForm())">
                         <div class="flex bg-stone-50 rounded mb-5 gap-3 pt-5 px-2">
+
                             <input type="text" autocomplete="off" v-model="modelForm.name" name="name"
                                 placeholder="Modelo"
                                 class="bg-zinc-100 mb-5 shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
@@ -211,13 +244,11 @@ export default {
                                 <button type="submit"
                                     class="py-1 px-3 mt-1 bg-green-600 hover:bg-green-700 rounded font-bold text-white">Enviar</button>
                             </div>
+                            
                         </div>
                     </form>
                 </div>
-                <div>
-                    <CarTable :cars="cars" />
-                </div>
-
+                <CarTable :cars="cars" />
             </div>
         </div>
     </body>
