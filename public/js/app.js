@@ -59497,8 +59497,24 @@ var render = function () {
             },
             [
               _c("div", [
-                _c("h1", { staticClass: "text-xl font-bold mb-5" }, [
-                  _vm._v("Editar Carro"),
+                _c("div", { staticClass: "flex justify-between" }, [
+                  _c("h1", { staticClass: "text-xl font-bold mb-5" }, [
+                    _vm._v("Editar Carro"),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "mb-4 px-3 font-bold text-gray-400",
+                      on: {
+                        click: function ($event) {
+                          $event.preventDefault()
+                          return _vm.$inertia.get("/cars")
+                        },
+                      },
+                    },
+                    [_vm._v("Voltar")]
+                  ),
                 ]),
                 _vm._v(" "),
                 _c(
@@ -59871,49 +59887,139 @@ var render = function () {
                 "bg-stone-50 w-full h-20 mb-5 flex justify-between items-center",
             },
             [
-              _c("div", [
-                _c(
-                  "button",
-                  {
-                    staticClass:
-                      "m-4 px-1 py-1 bg-green-600 shadow-sm hover:bg-green-700 rounded text-white font-bold h-8 items-center",
-                    on: {
-                      click: function ($event) {
-                        return _vm.openForm()
+              _c(
+                "div",
+                [
+                  _c("t-dropdown", {
+                    scopedSlots: _vm._u([
+                      {
+                        key: "trigger",
+                        fn: function (ref) {
+                          var mousedownHandler = ref.mousedownHandler
+                          return _c(
+                            "div",
+                            {
+                              staticClass:
+                                "m-4 px-1 py-1 bg-green-600 shadow-sm hover:bg-green-700 rounded text-white font-bold h-8 items-center",
+                            },
+                            [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "text-white flex",
+                                  attrs: {
+                                    id: "user-menu",
+                                    "aria-label": "User menu",
+                                    "aria-haspopup": "true",
+                                  },
+                                  on: { mousedown: mousedownHandler },
+                                },
+                                [
+                                  _vm._v(
+                                    " Adicionar\n                                "
+                                  ),
+                                  _c(
+                                    "svg",
+                                    {
+                                      staticClass: "mt-1 ml-1 w-4 h-4",
+                                      attrs: {
+                                        xmlns: "http://www.w3.org/2000/svg",
+                                        fill: "none",
+                                        viewBox: "0 0 24 24",
+                                        "stroke-width": "1.5",
+                                        stroke: "currentColor",
+                                      },
+                                    },
+                                    [
+                                      _c("path", {
+                                        attrs: {
+                                          "stroke-linecap": "round",
+                                          "stroke-linejoin": "round",
+                                          d: "M19.5 8.25l-7.5 7.5-7.5-7.5",
+                                        },
+                                      }),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                            ]
+                          )
+                        },
                       },
-                    },
-                  },
-                  [_vm._v("Adicionar\n                        Carro")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass:
-                      "m-4 px-1 py-1 bg-yellow-600 shadow-sm hover:bg-yellow-700 rounded text-white font-bold h-8 items-center",
-                    on: {
-                      click: function ($event) {
-                        return _vm.openBrandForm()
+                      {
+                        key: "default",
+                        fn: function (ref) {
+                          var hide = ref.hide
+                          var blurHandler = ref.blurHandler
+                          return _c(
+                            "div",
+                            {
+                              staticClass:
+                                "bg-stone-50 rounded flex justify-center",
+                            },
+                            [
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "m-4 px-1 py-1 bg-green-600 shadow-sm hover:bg-green-700 rounded text-white font-bold h-8 items-center",
+                                  on: {
+                                    click: function ($event) {
+                                      _vm.openForm(), hide()
+                                    },
+                                  },
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                Carro"
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "m-4 px-1 py-1 bg-green-600 shadow-sm hover:bg-green-700 rounded text-white font-bold h-8 items-center",
+                                  on: {
+                                    click: function ($event) {
+                                      _vm.openBrandForm(), hide()
+                                    },
+                                  },
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                Marca"
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "m-4 px-1 py-1 bg-green-600 shadow-sm hover:bg-green-700 rounded text-white font-bold h-8 items-center",
+                                  on: {
+                                    click: function ($event) {
+                                      _vm.openModelForm(), hide()
+                                    },
+                                  },
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                Modelo"
+                                  ),
+                                ]
+                              ),
+                            ]
+                          )
+                        },
                       },
-                    },
-                  },
-                  [_vm._v("Adicionar\n                        Marca")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass:
-                      "m-4 px-1 py-1 bg-yellow-600 shadow-sm hover:bg-yellow-700 rounded text-white font-bold h-8 items-center",
-                    on: {
-                      click: function ($event) {
-                        return _vm.openModelForm()
-                      },
-                    },
-                  },
-                  [_vm._v("Adicionar\n                        Modelo")]
-                ),
-              ]),
+                    ]),
+                  }),
+                ],
+                1
+              ),
               _vm._v(" "),
               _c("div", [
                 _c(
@@ -59949,7 +60055,7 @@ var render = function () {
                     },
                   ],
                   staticClass:
-                    "m-4 mr-64 px-1 py-1 bg-zinc-100 rounded shadow-sm font-bold",
+                    "m-4 px-1 py-1 bg-zinc-100 rounded shadow-sm font-bold",
                   attrs: { placeholder: "Pesquisar" },
                   domProps: { value: _vm.term },
                   on: {
@@ -60091,7 +60197,7 @@ var render = function () {
                               },
                             ],
                             staticClass:
-                              "bg-zinc-100 mb-5 shadow-sm appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+                              "w-full bg-zinc-100 mb-5 shadow-sm appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
                             attrs: { placeholder: "marca", name: "brand_id" },
                             on: {
                               change: function ($event) {
@@ -60155,7 +60261,7 @@ var render = function () {
                               },
                             ],
                             staticClass:
-                              "bg-zinc-100 mb-5 shadow-sm appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+                              "w-full bg-zinc-100 mb-5 shadow-sm appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
                             attrs: { name: "brand_model_id" },
                             on: {
                               click: function ($event) {

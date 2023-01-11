@@ -74,17 +74,31 @@ export default {
             <div class="mb-5 w-full">
                 <div class="bg-stone-50 w-full h-20 mb-5 flex justify-between items-center">
                     <div>
-                        <button @click="openForm()"
-                            class="m-4 px-1 py-1 bg-green-600 shadow-sm hover:bg-green-700  rounded text-white font-bold h-8 items-center">Adicionar
-                            Carro</button>
+                        <t-dropdown>
+                            <div class="m-4 px-1 py-1 bg-green-600 shadow-sm hover:bg-green-700  rounded text-white font-bold h-8 items-center"
+                                slot="trigger" slot-scope="{mousedownHandler}">
+                                <button id="user-menu" aria-label="User menu" aria-haspopup="true"
+                                    class="text-white flex" @mousedown="mousedownHandler"> Adicionar
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="mt-1 ml-1 w-4 h-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                    </svg></button>
 
-                        <button @click="openBrandForm()"
-                            class="m-4 px-1 py-1 bg-yellow-600 shadow-sm hover:bg-yellow-700  rounded text-white font-bold h-8 items-center">Adicionar
-                            Marca</button>
+                            </div>
+                            <div class="bg-stone-50 rounded flex justify-center" slot-scope="{ hide, blurHandler }">
+                                <button @click="openForm(), hide()"
+                                    class="m-4 px-1 py-1 bg-green-600 shadow-sm hover:bg-green-700  rounded text-white font-bold h-8 items-center">
+                                    Carro</button>
 
-                        <button @click="openModelForm()"
-                            class="m-4 px-1 py-1 bg-yellow-600 shadow-sm hover:bg-yellow-700  rounded text-white font-bold h-8 items-center">Adicionar
-                            Modelo</button>
+                                <button @click="openBrandForm(), hide()"
+                                    class="m-4 px-1 py-1 bg-green-600 shadow-sm hover:bg-green-700  rounded text-white font-bold h-8 items-center">
+                                    Marca</button>
+                                <button @click="openModelForm(), hide()"
+                                    class="m-4 px-1 py-1 bg-green-600 shadow-sm hover:bg-green-700  rounded text-white font-bold h-8 items-center">
+                                    Modelo</button>
+                            </div>
+                        </t-dropdown>
                     </div>
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -94,7 +108,7 @@ export default {
                         </svg>
 
                         <input v-model="term" @keyup="search" placeholder="Pesquisar"
-                            class="m-4 mr-64 px-1 py-1 bg-zinc-100 rounded shadow-sm font-bold">
+                            class="m-4 px-1 py-1 bg-zinc-100 rounded shadow-sm font-bold">
                     </div>
                     <div>
                         <div class="m-4 px-3 rounded font-bold flex h-8 items-center">
@@ -122,11 +136,13 @@ export default {
                     </div>
                 </div>
                 <div v-if="open == true" class="flex justify-center">
+
+                    <!-- Forms -->
                     <form @submit.prevent="form.post(('/cars/store'), { onSuccess: () => form.reset() })">
 
                         <div class="flex bg-stone-50 rounded mb-5 gap-3 pt-5 px-2">
                             <select placeholder="marca" v-model="form.brand_id" name="brand_id"
-                                class="bg-zinc-100 mb-5 shadow-sm appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                class="w-full bg-zinc-100 mb-5 shadow-sm appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                                 <option value="" disabled selected>Marca</option>
                                 <option v-for="brand in brands" :value="brand.id">
                                     {{ brand.name }}
@@ -135,7 +151,7 @@ export default {
 
                             <select @click.prevent="modelBelongsToBrand()" v-model="form.brand_model_id"
                                 name="brand_model_id"
-                                class="bg-zinc-100 mb-5 shadow-sm appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                class="w-full bg-zinc-100 mb-5 shadow-sm appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                                 <option value="" disabled selected>Modelo</option>
                                 <option v-for="model in models" :value="model.id">
                                     {{ model.name }}

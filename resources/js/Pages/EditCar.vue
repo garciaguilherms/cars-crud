@@ -40,7 +40,12 @@ export default {
                 <form @submit.prevent="updateCar()" class="m-5 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-80">
 
                     <div>
-                        <h1 class="text-xl font-bold mb-5">Editar Carro</h1>
+                        <div class="flex justify-between">
+                            <h1 class="text-xl font-bold mb-5">Editar Carro</h1>
+                            <button @click.prevent="$inertia.get('/cars')"
+                                class="mb-4 px-3 font-bold text-gray-400">Voltar</button>
+                        </div>
+
 
                         <select v-model="form.brand_id" name="brand_id"
                             class="w-64 bg-zinc-100 mb-5 shadow-sm appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
@@ -73,6 +78,7 @@ export default {
                     </div>
                     <button type="submit"
                         class="py-1 px-3 bg-indigo-400 hover:bg-indigo-600 rounded font-bold text-white">Atualizar</button>
+
                 </form>
             </div>
         </div>
