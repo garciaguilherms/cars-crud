@@ -1,7 +1,7 @@
 <script>
 export default {
     props: {
-        car: Array,
+        car: Object,
     }
 }
 </script>
@@ -43,7 +43,7 @@ export default {
                             <tbody>
                                 <tr>
                                     <td class="px-20 py-2">{{ car.brand.name }}</td>
-                                    <td class="px-20 py-2">{{ car.model }}</td>
+                                    <td class="px-20 py-2">{{ car.brand_model_id}}</td>
                                     <td class="px-20 py-2">{{ car.year }}</td>
                                     <td class="px-20 py-2">{{ car.color }}</td>
                                 </tr>

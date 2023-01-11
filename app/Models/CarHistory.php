@@ -13,7 +13,7 @@ class CarHistory extends Model
     protected $fillable = [
         'car_id',
         'user_id',
-        'model',
+        'brand_model_id',
         'year',
         'color',
         'brand_id',

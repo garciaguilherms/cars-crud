@@ -4,13 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\UserController;
-use App\Models\CarHistory;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
 use Inertia\Inertia;
 use App\Models\Brand;
+use App\Models\BrandModel;
 
 
 class CarController extends Controller
@@ -18,23 +15,26 @@ class CarController extends Controller
     public function index(Request $request)
     {
         $term = $request->get('term');
-        $cars = Car::with('user:id,name', 'brand:id,name')
-            ->orWhere('model', 'like', '%' . $term . '%')
+        $cars = Car::with('user:id,name', 'brand:id,name')->get();
 
-            ->orWhere('year', 'like', '%' . $term . '%')
+        // ->orWhere('year', 'like', '%' . $term . '%')
 
-            ->orWhere('color', 'like', '%' . $term . '%')
+        // ->orWhere('color', 'like', '%' . $term . '%')
 
-            ->orWhere('license_plate', 'like', '%' . $term . '%')
+        // ->orWhere('license_plate', 'like', '%' . $term . '%')
 
-            ->orWhereHas('brand', function ($query) use ($term) {
-                $query->where('name', 'like', '%' . $term . '%');
-            })
+        // ->orWhereHas('brand', function ($query) use ($term) {
+        //     $query->where('name', 'like', '%' . $term . '%');
+        // })
 
-            ->orWhereHas('user', function ($query) use ($term) {
-                $query->where('name', 'like', '%' . $term . '%');
-            })
-            ->get();
+        // ->orWhereHas('model', function ($query) use ($term) {
+        //     $query->where('name', 'like', '%' . $term . '%');
+        // })
+
+        // ->orWhereHas('user', function ($query) use ($term) {
+        //     $query->where('name', 'like', '%' . $term . '%');
+        // })
+        // ->get();
 
         $user = $request->user()
             ? $request->user()->only('id', 'name', 'email')
@@ -42,24 +42,27 @@ class CarController extends Controller
 
         $brands = Brand::all();
 
+        $models = BrandModel::where('brand_id', $request->brand_id)->get();
+
         return Inertia::render('Index', [
             'cars' => $cars,
             'user' => $user,
             'brands' => $brands,
+            'models' => $models,
         ]);
     }
 
     public function store(Request $request)
     {
-
         $regex = '/[A-Z]{3}[0-9][0-9A-Z][0-9]{2}/';
+
         $validated = $request->validate([
-            'model' => 'required',
+            'brand_id' => 'required',
+            'brand_model_id' => 'required',
+            'license_plate' => 'required|regex:' . $regex,
             'year' => 'required|integer|min:1900|max:2021',
             'color' => 'required',
             'description' => 'required',
-            'brand_id' => 'required',
-            'license_plate' => 'required|regex:' . $regex,
         ]);
 
         $request->user()->cars()->create($validated);
@@ -70,11 +73,9 @@ class CarController extends Controller
     public function edit(Car $car)
     {
         $car = $car->load('user:id,name', 'brand:id,name');
-        $brands = Brand::all();
 
         return Inertia::render('EditCar', [
             'car' => $car,
-            'brands' => $brands,
         ]);
     }
 
@@ -82,7 +83,7 @@ class CarController extends Controller
     {
         $car->update([
             'brand_id' => $request->brand_id,
-            'model' => $request->model,
+            'brand_model_id' => $request->brand_model_id,
             'year' => $request->year,
             'color' => $request->color,
             'description' => $request->description,
@@ -108,7 +109,6 @@ class CarController extends Controller
 
     public function more(Car $car)
     {
-
         $car = $car->load('user:id,name', 'brand:id,name');
         return Inertia::render('More', [
             'car' => $car

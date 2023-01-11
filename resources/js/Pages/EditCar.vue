@@ -7,7 +7,7 @@ export default {
         return {
             form: this.$inertia.form({
                 brand_id: this.car.brand_id,
-                model: this.car.model,
+                brand_model_id: this.car.brand_model_id,
                 year: this.car.year,
                 color: this.car.color,
                 description: this.car.description,
@@ -17,6 +17,7 @@ export default {
     props: {
         car: Object,
         brands: Array,
+        models: Array,
     },
     methods: {
         updateCar() {
@@ -49,6 +50,14 @@ export default {
                             </option>
                         </select>
 
+                        <select v-model="form.brand_model_id" name="brand_model_id"
+                            class="w-64 bg-zinc-100 mb-5 shadow-sm appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <option value="" disabled selected>Marca</option>
+                            <option v-for="model in models" :value="model.id">
+                                {{ model.name }}
+                            </option>
+                        </select>
+
                         <input type="text" v-model="form.model" name="model" placeholder="Modelo"
                             class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
 
@@ -60,7 +69,8 @@ export default {
 
                         <input type="text" v-model="form.color" name="color" placeholder="Cor"
                             class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        <input type="text" v-model="form.description" name="description" placeholder="Descrição"
+                        
+                            <input type="text" v-model="form.description" name="description" placeholder="Descrição"
                             class="mb-5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
 
                     </div>

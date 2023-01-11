@@ -9,13 +9,14 @@ export default {
             term: '',
             open: false,
             brandFormOpen: false,
+
             brandForm: this.$inertia.form({
                 name: '',
             }),
 
             form: this.$inertia.form({
                 brand_id: '',
-                model: '',
+                brand_model_id: '',
                 year: '',
                 color: '',
                 license_plate: '',
@@ -27,6 +28,7 @@ export default {
         cars: Array,
         user: Object,
         brands: Array,
+        models: Array,
     },
 
     components: {
@@ -46,6 +48,9 @@ export default {
 
         search() {
             this.$inertia.get('/cars', { term: this.term }, { preserveState: true });
+        },
+        modelBelongsToBrand() {
+            this.$inertia.get('/cars', { brand_id: this.form.brand_id }, { preserveState: true });
         },
     },
 }
@@ -113,9 +118,14 @@ export default {
                                 </option>
                             </select>
 
-                            <input type="text" autocomplete="off" v-model="form.model" name="model" placeholder="Modelo"
-                                class="bg-zinc-100 mb-5 shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-
+                            <select @click.prevent="modelBelongsToBrand()" v-model="form.brand_model_id"
+                                name="brand_model_id"
+                                class="bg-zinc-100 mb-5 shadow-sm appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <option value="" disabled selected>Modelo</option>
+                                <option v-for="model in models" :value="model.id">
+                                    {{ model.name }}
+                                </option>
+                            </select>
                             <input type="text" autocomplete="off" v-model="form.license_plate" name="licence_plate"
                                 placeholder="Placa"
                                 class="bg-zinc-100 mb-5 shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
